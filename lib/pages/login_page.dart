@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sariampenan/MySetup.dart';
+import 'package:sariampenan/my_setup.dart';
 import 'package:sariampenan/pages/main_page.dart';
 
 class LoginPage extends StatefulWidget {

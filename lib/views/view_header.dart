@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sariampenan/MySetup.dart';
+import 'package:sariampenan/my_setup.dart';
 
 Widget headerContainer(String title) {
   return Container(
