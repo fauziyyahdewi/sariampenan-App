@@ -1,0 +1,27 @@
+name: sariampenan
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+
+dependencies:
+  easy_search_bar: ^2.5.0
+  flutter:
+    sdk: flutter
+  google_fonts: ^6.2.0
+  cupertino_icons: ^1.0.0
+  provider: ^6.1.2
+  permission_handler: ^11.3.1
+  flutter_typeahead: ^5.2.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
