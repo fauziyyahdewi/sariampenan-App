@@ -1,9 +1,14 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sariampenan/my_setup.dart';
-import 'package:sariampenan/pages/request_page.dart';
-import 'package:sariampenan/views/view_header.dart';
+import 'package:sariampenan/pages/approve_ppkk_page.dart';
+import 'package:sariampenan/pages/input_data_page.dart';
+import 'package:sariampenan/pages/profile_page.dart';
+import 'package:sariampenan/widgets/settings_request.dart';
+import 'package:sariampenan/widgets/shortcut_box.dart';
 import 'package:sariampenan/widgets/shortcut.dart';
+import 'package:sariampenan/widgets/trip_monitor.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -13,89 +18,124 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  double menuSize = 10;
-  double backGroundHeight = 10;
-
   @override
   Widget build(BuildContext context) {
-    backGroundHeight = MediaQuery.of(context).size.height;
-    double w = MediaQuery.of(context).size.width - 30.0 * 3;
-    menuSize = w / 2;
+    var height = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: mySetup.backgroundColor,
-      body: SingleChildScrollView(
-        child: Container(
-          //color: Color(0xFF101010),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: Padding(
+          padding: const EdgeInsets.only(left: 8.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              headerContainer('Ship App v1'),
-              waveContainer(
-                child: Column(
-                  children: [
-                    Container(
-                      height: 30.0,
-                      child: Container(
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Halo " + "Customer",
-                              style: GoogleFonts.poppins(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            // Icon(
-                            //   Icons.arrow_drop_down,
-                            //   color: Colors.white,
-                            //   size: 45.0,
-                            // ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Container(
-                      height: 50.0,
-                      padding: EdgeInsets.only(left: 20.0, right: 20.0),
-                      child: Align(
-                        alignment: Alignment.bottomLeft,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Container(
-                              child: Text(
-                                'Customer',
-                                style: GoogleFonts.poppins(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
+              Text(
+                'App V1',
+                style: GoogleFonts.poppins(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: mySetup.primaryColor,
                 ),
               ),
-              // createPilihKonsumen(),
-              createMenuButtons(context),
-              SizedBox(
-                height: 40.0,
+              Text(
+                'Hello Direksi @name',
+                style: GoogleFonts.poppins(
+                  fontSize: 13,
+                  fontWeight: FontWeight.bold,
+                  color: mySetup.primaryColor,
+                ),
               ),
             ],
           ),
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 20.0),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ProfilePage(),
+                  ),
+                );
+              },
+              child: Container(
+                padding: const EdgeInsets.all(3),
+                decoration: BoxDecoration(
+                    color: mySetup.primaryColor,
+                    border: Border.all(width: 2),
+                    borderRadius: BorderRadius.circular(
+                      40,
+                    )),
+                child: Icon(
+                  Icons.person_2_rounded,
+                  color: Colors.white,
+                  size: 20,
+                ),
+              ),
+            ),
+          ),
+        ],
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(0.06 * height),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 22.0, vertical: 8),
+            child: Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      color: mySetup.primaryColor,
+                      borderRadius: BorderRadius.circular(5)),
+                  child: Icon(
+                    Icons.arrow_back_ios_new,
+                    color: Colors.white,
+                  ),
+                ),
+                Expanded(
+                  child: Text(
+                    'Kapal Kargo CPH2387',
+                    style: GoogleFonts.poppins(
+                      fontSize: 13,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      color: mySetup.primaryColor,
+                      borderRadius: BorderRadius.circular(5)),
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TripMonitorBox(),
+            // SettingRequest(),
+            SizedBox(height: 10),
+            createInfoButtons(),
+            SizedBox(height: 10),
+            createOtherMenuButtons(),
+          ],
         ),
       ),
     );
   }
 
-  Widget createMenuButtons(BuildContext context) {
-    double space = 25.0;
+  Widget createInfoButtons() {
+    double space = 15.0;
     double size = (MediaQuery.of(context).size.width - 20.0 * 2 - space) / 2;
 
     return Container(
@@ -104,73 +144,93 @@ class _MainPageState extends State<MainPage> {
         spacing: space,
         runSpacing: space,
         children: [
-          // _createShortCut(size, 'SALES ORDER', 'assets/images/asset-1.png', () {
-          //   var custSelect =
-          //       Provider.of<CustomerSelectProvider>(context, listen: false);
-          //   if (custSelect.isEmpty) {
-          //     myDialog.promptInfo(context, 'Pilih Konsumen Dulu');
-          //   } else {
-          //     myNavigator.push(context, TransSalesOrderPage());
-          //   }
-          createShortCutAsset(
+          createShortCutInfo(
             size,
-            'PERMINTAAN LOGISTIC',
-            'assets/images/quote-request.png',
-            bkgColor: mySetup.menuIconColor,
-            iconColor: Colors.white,
+            Icons.build,
+            'Perbaikan',
+            '5',
+            Color.fromARGB(255, 239, 90, 111),
+            onClick: () {},
+          ),
+          createShortCutInfo(
+            size,
+            Icons.shopping_cart_checkout,
+            'Logistic',
+            '2',
+            Color.fromARGB(255, 63, 162, 246),
+            onClick: () {},
+          ),
+          createShortCutInfo(
+            size,
+            Icons.mail,
+            'Surat',
+            '1',
+            Color.fromARGB(255, 239, 184, 90),
+            onClick: () {},
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget createOtherMenuButtons() {
+    double space = 15.0;
+    double size = (MediaQuery.of(context).size.width - 20.0 * 3 - space) / 3;
+
+    return Container(
+      margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 10.0),
+      child: Wrap(
+        spacing: space,
+        runSpacing: space,
+        children: [
+          createShortCutOtherMenu(
+            size,
+            Icons.shopping_cart_checkout,
+            'Aproval Logistik',
+            onClick: () {},
+          ),
+          createShortCutOtherMenu(
+            size,
+            Icons.build,
+            'Aproval Perbaikan',
             onClick: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => RequestPage()),
+                MaterialPageRoute(
+                  builder: (context) => ApprovePpkkPage(),
+                ),
               );
             },
           ),
-          createShortCutAsset(
+          createShortCutOtherMenu(
             size,
-            'PERBAIKAN',
-            'assets/images/quote-request.png',
-            bkgColor: mySetup.menuIconColor,
-            iconColor: Colors.white,
+            Icons.people,
+            'Crew Kapal',
             onClick: () {},
           ),
-          createShortCutAsset(
+          createShortCutOtherMenu(
             size,
-            'APPROVAL PERMINTAAN LOGISTIC',
-            'assets/images/quote-request.png',
-            bkgColor: mySetup.menuIconColor,
-            iconColor: Colors.white,
+            Icons.directions_boat,
+            'Input LKK',
             onClick: () {},
           ),
-          createShortCutAsset(
+          createShortCutOtherMenu(
             size,
-            'APPROVAL PERBAIKAN',
-            'assets/images/quote-request.png',
-            bkgColor: mySetup.menuIconColor,
-            iconColor: Colors.white,
-            onClick: () {},
+            Icons.security_update,
+            'Input PPKK',
+            onClick: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => InputDataPage(),
+                ),
+              );
+            },
           ),
-          createShortCutAsset(
+          createShortCutOtherMenu(
             size,
-            'SURAT-SURAT',
-            'assets/images/quote-request.png',
-            bkgColor: mySetup.menuIconColor,
-            iconColor: Colors.white,
-            onClick: () {},
-          ),
-          createShortCutAsset(
-            size,
-            'INPUT HASIL PERBAIKAN',
-            'assets/images/quote-request.png',
-            bkgColor: mySetup.menuIconColor,
-            iconColor: Colors.white,
-            onClick: () {},
-          ),
-          createShortCutAsset(
-            size,
-            'CREW KAPAL',
-            'assets/images/quote-request.png',
-            bkgColor: mySetup.menuIconColor,
-            iconColor: Colors.white,
+            Icons.document_scanner,
+            'Input Hasil Perbaikan',
             onClick: () {},
           ),
         ],
