@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sariampenan/my_setup.dart';
-import 'package:sariampenan/pages/approve_ppkk_page.dart';
-import 'package:sariampenan/pages/main_page.dart';
+import 'package:sariampenan/pages/approval_item_page.dart';
 import 'package:sariampenan/widgets/history_supply_box.dart';
 
 class HistoryPage extends StatefulWidget {
@@ -27,7 +26,7 @@ class _HistoryPageState extends State<HistoryPage> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ApprovePpkkPage()),
+                MaterialPageRoute(builder: (context) => ApproveItemPage()),
               );
             },
           ),

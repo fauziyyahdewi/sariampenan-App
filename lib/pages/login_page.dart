@@ -55,10 +55,11 @@ class _LoginPageState extends State<LoginPage> {
                   controller: txtHp,
                   textInputAction: TextInputAction.next,
                   style: GoogleFonts.poppins(fontSize: 18),
+                  keyboardType: TextInputType.phone,
                   onSubmitted: (value) {
                     //
                   },
-                  decoration: InputDecoration(
+                  decoration: InputDecoration(                 
                     fillColor: Colors.white,
                     filled: true,
                     hintText: "Nomor Handphone",
@@ -69,7 +70,10 @@ class _LoginPageState extends State<LoginPage> {
                       borderRadius: BorderRadius.all(Radius.circular(5.0)),
                     ),
                     prefixIcon: Container(
-                      padding: EdgeInsets.only(left: 8.0, right: 8.0, top: 2),
+                      padding: EdgeInsets.only(
+                        left: 8.0,
+                        right: 8.0,
+                      ),
                       child: Text(
                         '+62',
                         style: GoogleFonts.poppins(
@@ -101,6 +105,7 @@ class _LoginPageState extends State<LoginPage> {
                   controller: txtPassword,
                   obscureText: !showPassword,
                   textInputAction: TextInputAction.done,
+                  style: GoogleFonts.poppins(fontSize: 18),
                   onSubmitted: (value) {},
                   decoration: InputDecoration(
                     fillColor: Colors.white,

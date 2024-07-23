@@ -1,13 +1,16 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sariampenan/model/logistic.dart';
+import 'package:sariampenan/model/mail.dart';
+import 'package:sariampenan/model/repair.dart';
+import 'package:sariampenan/model/ship_monitor.dart';
 import 'package:sariampenan/my_setup.dart';
-import 'package:sariampenan/pages/approve_ppkk_page.dart';
 import 'package:sariampenan/pages/input_data_page.dart';
+import 'package:sariampenan/pages/input_detail_data_page.dart';
+import 'package:sariampenan/pages/list_approval_request_page.dart';
+import 'package:sariampenan/pages/list_request.dart';
 import 'package:sariampenan/pages/profile_page.dart';
-import 'package:sariampenan/widgets/settings_request.dart';
 import 'package:sariampenan/widgets/shortcut_box.dart';
-import 'package:sariampenan/widgets/shortcut.dart';
 import 'package:sariampenan/widgets/trip_monitor.dart';
 
 class MainPage extends StatefulWidget {
@@ -18,11 +21,36 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  int currentIndex = 0;
+
+  void _previousData() {
+    setState(() {
+      currentIndex =
+          (currentIndex - 1 + dummyDataShip.length) % dummyDataShip.length;
+    });
+  }
+
+  void _nextData() {
+    setState(() {
+      currentIndex = (currentIndex + 1) % dummyDataShip.length;
+    });
+  }
+
+    void _navigateToMainPage(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => MainPage()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    ShipMonitorDataModel currentShip = dummyDataShip[currentIndex];
     var height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       appBar: AppBar(
+        surfaceTintColor: Colors.white,
         automaticallyImplyLeading: false,
         title: Padding(
           padding: const EdgeInsets.only(left: 8.0),
@@ -41,7 +69,7 @@ class _MainPageState extends State<MainPage> {
                 'Hello Direksi @name',
                 style: GoogleFonts.poppins(
                   fontSize: 13,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w700,
                   color: mySetup.primaryColor,
                 ),
               ),
@@ -69,7 +97,7 @@ class _MainPageState extends State<MainPage> {
                       40,
                     )),
                 child: Icon(
-                  Icons.person_2_rounded,
+                  Icons.person,
                   color: Colors.white,
                   size: 20,
                 ),
@@ -83,19 +111,22 @@ class _MainPageState extends State<MainPage> {
             padding: const EdgeInsets.symmetric(horizontal: 22.0, vertical: 8),
             child: Row(
               children: [
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                      color: mySetup.primaryColor,
-                      borderRadius: BorderRadius.circular(5)),
-                  child: Icon(
-                    Icons.arrow_back_ios_new,
-                    color: Colors.white,
+                GestureDetector(
+                  onTap: _previousData,
+                  child: Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        color: mySetup.primaryColor,
+                        borderRadius: BorderRadius.circular(5)),
+                    child: Icon(
+                      Icons.arrow_back_ios_new,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
                 Expanded(
                   child: Text(
-                    'Kapal Kargo CPH2387',
+                    currentShip.name,
                     style: GoogleFonts.poppins(
                       fontSize: 13,
                       fontWeight: FontWeight.bold,
@@ -103,14 +134,17 @@ class _MainPageState extends State<MainPage> {
                     textAlign: TextAlign.center,
                   ),
                 ),
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                      color: mySetup.primaryColor,
-                      borderRadius: BorderRadius.circular(5)),
-                  child: Icon(
-                    Icons.arrow_forward_ios,
-                    color: Colors.white,
+                GestureDetector(
+                  onTap: _nextData,
+                  child: Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        color: mySetup.primaryColor,
+                        borderRadius: BorderRadius.circular(5)),
+                    child: Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ],
@@ -122,7 +156,7 @@ class _MainPageState extends State<MainPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TripMonitorBox(),
+            TripMonitorBox(ship: currentShip),
             // SettingRequest(),
             SizedBox(height: 10),
             createInfoButtons(),
@@ -135,6 +169,16 @@ class _MainPageState extends State<MainPage> {
   }
 
   Widget createInfoButtons() {
+    ShipMonitorDataModel currentShip = dummyDataShip[currentIndex];
+
+    int repairsCount = dummyDataRepair
+        .where((repair) => repair.shipId == currentShip.shipId)
+        .length;
+    int logisticsCount = dummyDataLogistic
+        .where((logistic) => logistic.shipId == currentShip.shipId)
+        .length;
+    int mailsCount =
+        dummyDataMail.where((mail) => mail.shipId == currentShip.shipId).length;
     double space = 15.0;
     double size = (MediaQuery.of(context).size.width - 20.0 * 2 - space) / 2;
 
@@ -148,7 +192,7 @@ class _MainPageState extends State<MainPage> {
             size,
             Icons.build,
             'Perbaikan',
-            '5',
+            '${repairsCount}',
             Color.fromARGB(255, 239, 90, 111),
             onClick: () {},
           ),
@@ -156,7 +200,7 @@ class _MainPageState extends State<MainPage> {
             size,
             Icons.shopping_cart_checkout,
             'Logistic',
-            '2',
+            '${logisticsCount}',
             Color.fromARGB(255, 63, 162, 246),
             onClick: () {},
           ),
@@ -164,7 +208,7 @@ class _MainPageState extends State<MainPage> {
             size,
             Icons.mail,
             'Surat',
-            '1',
+            '${mailsCount}',
             Color.fromARGB(255, 239, 184, 90),
             onClick: () {},
           ),
@@ -187,20 +231,20 @@ class _MainPageState extends State<MainPage> {
             size,
             Icons.shopping_cart_checkout,
             'Aproval Logistik',
-            onClick: () {},
-          ),
-          createShortCutOtherMenu(
-            size,
-            Icons.build,
-            'Aproval Perbaikan',
             onClick: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ApprovePpkkPage(),
+                  builder: (context) => ListApprovalRequestPage(),
                 ),
               );
             },
+          ),
+          createShortCutOtherMenu(
+            size,
+            Icons.query_builder_outlined,
+            'Aproval Perbaikan',
+            onClick: () {},
           ),
           createShortCutOtherMenu(
             size,
@@ -222,7 +266,7 @@ class _MainPageState extends State<MainPage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => InputDataPage(),
+                  builder: (context) => InputDetailDataPage(onBack: () => _navigateToMainPage(context),),
                 ),
               );
             },
@@ -232,6 +276,25 @@ class _MainPageState extends State<MainPage> {
             Icons.document_scanner,
             'Input Hasil Perbaikan',
             onClick: () {},
+          ),
+          createShortCutOtherMenu(
+            size,
+            Icons.build,
+            'Perbaikan',
+            onClick: () {},
+          ),
+          createShortCutOtherMenu(
+            size,
+            Icons.request_page,
+            'Permintaan Logistic',
+            onClick: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ListRequestPage(),
+                ),
+              );
+            },
           ),
         ],
       ),

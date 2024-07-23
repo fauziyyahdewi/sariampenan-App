@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sariampenan/my_setup.dart';
+import 'package:sariampenan/pages/detail_request_page.dart';
 import 'package:sariampenan/pages/input_detail_data_page.dart';
 
 class DetailRequestBox extends StatefulWidget {
@@ -11,6 +12,15 @@ class DetailRequestBox extends StatefulWidget {
 }
 
 class _DetailRequestBoxState extends State<DetailRequestBox> {
+  final String noPPK = "SBY240613003 - PPK";
+
+    void _navigateToDetailRequest(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => DetailRequestPage(noPPK: noPPK,)),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -85,7 +95,7 @@ class _DetailRequestBoxState extends State<DetailRequestBox> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => InputDetailDataPage()),
+                        MaterialPageRoute(builder: (context) => InputDetailDataPage(onBack: () => _navigateToDetailRequest(context))),
                       );
                     },
                     child: Container(

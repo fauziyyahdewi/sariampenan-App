@@ -4,7 +4,8 @@ import 'package:sariampenan/my_setup.dart';
 import 'package:sariampenan/pages/input_data_page.dart';
 
 class InputDetailDataPage extends StatefulWidget {
-  const InputDetailDataPage({super.key});
+  final VoidCallback onBack;
+  const InputDetailDataPage({super.key, required this.onBack});
 
   @override
   State<InputDetailDataPage> createState() => _InputDetailDataPageState();
@@ -30,12 +31,7 @@ class _InputDetailDataPageState extends State<InputDetailDataPage> {
           child: IconButton(
             icon: Icon(Icons.arrow_back),
             color: mySetup.primaryColor,
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => InputDataPage()),
-              );
-            },
+            onPressed: widget.onBack,
           ),
         ),
         title: Text(

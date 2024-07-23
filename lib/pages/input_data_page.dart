@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sariampenan/my_setup.dart';
 import 'package:sariampenan/pages/input_detail_data_page.dart';
-import 'package:sariampenan/pages/request_page.dart';
+import 'package:sariampenan/pages/list_request.dart';
 import 'package:sariampenan/widgets/detail_request_box.dart';
 
 class InputDataPage extends StatefulWidget {
@@ -31,6 +31,13 @@ class _InputDataPageState extends State<InputDataPage> {
     }
   }
 
+  void _navigateToInputItem(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => InputDataPage()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +52,7 @@ class _InputDataPageState extends State<InputDataPage> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => RequestPage()),
+                  MaterialPageRoute(builder: (context) => ListRequestPage()),
                 );
               },
             ),
@@ -159,6 +166,8 @@ class _InputDataPageState extends State<InputDataPage> {
                 ],
               ),
             ),
+
+            // Tambah barang
             Container(
               padding: EdgeInsets.only(left: 30.0, right: 30.0, top: 20.0),
               child: GestureDetector(
@@ -166,7 +175,9 @@ class _InputDataPageState extends State<InputDataPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => InputDetailDataPage()),
+                      builder: (context) =>
+                          InputDetailDataPage(onBack: () => _navigateToInputItem(context)),
+                    ),
                   );
                 },
                 child: Container(

@@ -1,19 +1,32 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sariampenan/my_setup.dart';
-import 'package:sariampenan/pages/main_page.dart';
-import 'package:sariampenan/widgets/request_box.dart';
+import 'package:sariampenan/pages/list_approval_request_page.dart';
+import 'package:sariampenan/widgets/detail_item_box.dart';
 
-class RequestPage extends StatefulWidget {
-  const RequestPage({super.key});
+class DetailRequestPage extends StatefulWidget {
+  final String noPPK;
+  const DetailRequestPage({super.key, required this.noPPK});
 
   @override
-  State<RequestPage> createState() => _RequestPageState();
+  State<DetailRequestPage> createState() => _DetailRequestPageState();
 }
 
-class _RequestPageState extends State<RequestPage> {
-  final TextEditingController _searchController = TextEditingController();
+class _DetailRequestPageState extends State<DetailRequestPage> {
+  late TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController(text: widget.noPPK.toString());
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -21,6 +34,7 @@ class _RequestPageState extends State<RequestPage> {
     return Scaffold(
       backgroundColor: mySetup.backgroundColor,
       appBar: AppBar(
+        surfaceTintColor: Colors.white,
         backgroundColor: Colors.white,
         leading: Padding(
           padding: const EdgeInsets.only(left: 10.0),
@@ -30,13 +44,14 @@ class _RequestPageState extends State<RequestPage> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MainPage()),
+                MaterialPageRoute(
+                    builder: (context) => ListApprovalRequestPage()),
               );
             },
           ),
         ),
         title: Text(
-          'Permintaan Logistic Kapal',
+          'Approval Barang PPK',
           style: GoogleFonts.poppins(
               fontSize: 18,
               color: mySetup.primaryColor,
@@ -65,13 +80,9 @@ class _RequestPageState extends State<RequestPage> {
                         fontSize: 14,
                         color: mySetup.primaryColor,
                         fontWeight: FontWeight.w500),
-                    controller: _searchController,
+                    controller: _controller,
                     onChanged: (value) {},
                     decoration: InputDecoration(
-                      prefixIcon: const Icon(
-                        CupertinoIcons.search,
-                        size: 18,
-                      ),
                       contentPadding: const EdgeInsets.symmetric(
                           vertical: 10.0, horizontal: 10.0),
                       filled: true,
@@ -98,11 +109,6 @@ class _RequestPageState extends State<RequestPage> {
                           width: 1.0,
                         ),
                       ),
-                      hintText: 'Search Your Link',
-                      hintStyle: GoogleFonts.poppins(
-                        fontSize: 12.0,
-                        color: Color.fromRGBO(139, 141, 152, 1),
-                      ),
                       alignLabelWithHint: true,
                     ),
                   ),
@@ -127,26 +133,11 @@ class _RequestPageState extends State<RequestPage> {
         child: Column(
           children: List.generate(8, (index) {
             return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: RequestBox(),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 22.0, vertical: 8),
+              child: DetailItemBox(),
             );
           }),
-        ),
-      ),
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.only(
-          right: 10.0,
-          bottom: 10,
-        ),
-        child: FloatingActionButton(
-          onPressed: () {},
-          backgroundColor: mySetup.primaryColor,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          child: Icon(
-            Icons.add,
-            color: Colors.white,
-          ),
         ),
       ),
     );

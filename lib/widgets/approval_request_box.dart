@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sariampenan/my_setup.dart';
-import 'package:sariampenan/pages/input_data_page.dart';
+import 'package:sariampenan/pages/detail_request_page.dart';
 
-class RequestBox extends StatefulWidget {
-  const RequestBox({super.key});
+class ApprovalRequestBox extends StatefulWidget {
+  const ApprovalRequestBox({super.key});
 
   @override
-  State<RequestBox> createState() => _RequestBoxState();
+  State<ApprovalRequestBox> createState() => _ApprovalRequestBoxState();
 }
 
-class _RequestBoxState extends State<RequestBox> {
+class _ApprovalRequestBoxState extends State<ApprovalRequestBox> {
+  final String noPPK = "SBY240613003 - PPK";
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,7 +39,7 @@ class _RequestBoxState extends State<RequestBox> {
                       text: 'Nomor PPKK: ',
                       children: [
                         TextSpan(
-                          text: "SBY240613003 - PPK\n",
+                          text: noPPK + "\n" ,
                           style: GoogleFonts.poppins(
                             fontWeight: FontWeight.w700,
                             color: Color.fromARGB(255, 236, 152, 8),
@@ -68,6 +70,17 @@ class _RequestBoxState extends State<RequestBox> {
                       ],
                     ),
                     TextSpan(
+                      text: 'Progres: ',
+                      children: [
+                        TextSpan(
+                          text: "5/10\n",
+                          style: GoogleFonts.poppins(
+                            fontWeight: FontWeight.w500,
+                          ),
+                        )
+                      ],
+                    ),
+                    TextSpan(
                       text: 'User: ',
                       children: [
                         TextSpan(
@@ -79,51 +92,7 @@ class _RequestBoxState extends State<RequestBox> {
                       ],
                     ),
                     TextSpan(
-                      text: 'Submit: ',
-                      children: [
-                        TextSpan(
-                          text: "\n",
-                          style: GoogleFonts.poppins(
-                            fontWeight: FontWeight.w500,
-                          ),
-                        )
-                      ],
-                    ),
-                    TextSpan(
                       text: 'Verified: ',
-                      children: [
-                        TextSpan(
-                          text: "\n",
-                          style: GoogleFonts.poppins(
-                            fontWeight: FontWeight.w500,
-                          ),
-                        )
-                      ],
-                    ),
-                    TextSpan(
-                      text: 'Approved: ',
-                      children: [
-                        TextSpan(
-                          text: "\n",
-                          style: GoogleFonts.poppins(
-                            fontWeight: FontWeight.w500,
-                          ),
-                        )
-                      ],
-                    ),
-                    TextSpan(
-                      text: 'On Progress: ',
-                      children: [
-                        TextSpan(
-                          text: "\n",
-                          style: GoogleFonts.poppins(
-                            fontWeight: FontWeight.w500,
-                          ),
-                        )
-                      ],
-                    ),
-                    TextSpan(
-                      text: 'Finished: ',
                       children: [
                         TextSpan(
                           text: "",
@@ -138,12 +107,12 @@ class _RequestBoxState extends State<RequestBox> {
               ),
             ),
 
-            // edit icon
+            // see icon
             GestureDetector(
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => InputDataPage()),
+                  MaterialPageRoute(builder: (context) => DetailRequestPage(noPPK: noPPK,)),
                 );
               },
               child: Padding(
@@ -155,7 +124,7 @@ class _RequestBoxState extends State<RequestBox> {
                     decoration: BoxDecoration(
                         color: mySetup.primaryColor,
                         borderRadius: BorderRadius.circular(5)),
-                    child: Icon(Icons.edit, color: Colors.white),
+                    child: Icon(Icons.remove_red_eye, color: Colors.white),
                   ),
                 ),
               ),

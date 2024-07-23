@@ -4,14 +4,14 @@ import 'package:sariampenan/my_setup.dart';
 import 'package:sariampenan/pages/history_page.dart';
 import 'package:sariampenan/pages/main_page.dart';
 
-class ApprovePpkkPage extends StatefulWidget {
-  const ApprovePpkkPage({super.key});
+class ApproveItemPage extends StatefulWidget {
+  const ApproveItemPage({super.key});
 
   @override
-  State<ApprovePpkkPage> createState() => _ApprovePpkkPageState();
+  State<ApproveItemPage> createState() => _ApproveItemPageState();
 }
 
-class _ApprovePpkkPageState extends State<ApprovePpkkPage> {
+class _ApproveItemPageState extends State<ApproveItemPage> {
   int quantity = 0;
   String selectedStock = 'pcs';
   String selectedRequest = 'pcs';
@@ -25,6 +25,7 @@ class _ApprovePpkkPageState extends State<ApprovePpkkPage> {
     return Scaffold(
       backgroundColor: mySetup.backgroundColor,
       appBar: AppBar(
+        surfaceTintColor: Colors.white,
         backgroundColor: Colors.white,
         leading: Padding(
           padding: const EdgeInsets.only(left: 10.0),
@@ -626,7 +627,7 @@ class _ApprovePpkkPageState extends State<ApprovePpkkPage> {
                 ),
               ),
 
-                            Container(
+              Container(
                 padding: const EdgeInsets.only(
                     left: 30.0, right: 30.0, top: 20.0, bottom: 20.0),
                 child: GestureDetector(
