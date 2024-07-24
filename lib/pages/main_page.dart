@@ -5,7 +5,6 @@ import 'package:sariampenan/model/mail.dart';
 import 'package:sariampenan/model/repair.dart';
 import 'package:sariampenan/model/ship_monitor.dart';
 import 'package:sariampenan/my_setup.dart';
-import 'package:sariampenan/pages/input_data_page.dart';
 import 'package:sariampenan/pages/input_detail_data_page.dart';
 import 'package:sariampenan/pages/list_approval_request_page.dart';
 import 'package:sariampenan/pages/list_request.dart';
