@@ -24,6 +24,7 @@ class _InputDetailDataPageState extends State<InputDetailDataPage> {
     return Scaffold(
       backgroundColor: mySetup.backgroundColor,
       appBar: AppBar(
+        surfaceTintColor: Colors.white,
         backgroundColor: Colors.white,
         leading: Padding(
           padding: const EdgeInsets.only(left: 10.0),

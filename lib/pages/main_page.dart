@@ -4,11 +4,14 @@ import 'package:sariampenan/model/logistic.dart';
 import 'package:sariampenan/model/mail.dart';
 import 'package:sariampenan/model/repair.dart';
 import 'package:sariampenan/model/ship_monitor.dart';
+import 'package:sariampenan/model/user.dart';
 import 'package:sariampenan/my_setup.dart';
 import 'package:sariampenan/pages/input_detail_data_page.dart';
 import 'package:sariampenan/pages/list_approval_request_page.dart';
 import 'package:sariampenan/pages/list_request.dart';
 import 'package:sariampenan/pages/profile_page.dart';
+import 'package:sariampenan/session_manager.dart';
+import 'package:sariampenan/widgets/settings_request.dart';
 import 'package:sariampenan/widgets/shortcut_box.dart';
 import 'package:sariampenan/widgets/trip_monitor.dart';
 
@@ -21,6 +24,31 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int currentIndex = 0;
+  late User currentUser; // Variabel untuk menyimpan data pengguna
+  late SessionManager sessionManager; // Variabel untuk SessionManager
+
+  @override
+  void initState() {
+    super.initState();
+    sessionManager = SessionManager();
+    _loadUserData();
+  }
+
+  void _loadUserData() async {
+    User? user = await sessionManager.getUser();
+    if (user != null) {
+      setState(() {
+        currentUser = user;
+      });
+    } else {
+      // Tangani kasus ketika pengguna tidak ditemukan
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Gagal memuat data pengguna.'),
+        ),
+      );
+    }
+  }
 
   void _previousData() {
     setState(() {
@@ -35,7 +63,7 @@ class _MainPageState extends State<MainPage> {
     });
   }
 
-    void _navigateToMainPage(BuildContext context) {
+  void _navigateToMainPage(BuildContext context) {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => MainPage()),
@@ -44,6 +72,14 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    if (currentUser == null) {
+      return Scaffold(
+        body: Center(
+            child:
+                CircularProgressIndicator()), // Menunggu data pengguna dimuat
+      );
+    }
+
     ShipMonitorDataModel currentShip = dummyDataShip[currentIndex];
     var height = MediaQuery.of(context).size.height;
 
@@ -65,7 +101,7 @@ class _MainPageState extends State<MainPage> {
                 ),
               ),
               Text(
-                'Hello Direksi @name',
+                'Hello Direksi ${currentUser.name}',
                 style: GoogleFonts.poppins(
                   fontSize: 13,
                   fontWeight: FontWeight.w700,
@@ -110,19 +146,21 @@ class _MainPageState extends State<MainPage> {
             padding: const EdgeInsets.symmetric(horizontal: 22.0, vertical: 8),
             child: Row(
               children: [
-                GestureDetector(
-                  onTap: _previousData,
-                  child: Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                        color: mySetup.primaryColor,
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Icon(
-                      Icons.arrow_back_ios_new,
-                      color: Colors.white,
+                if (dummyDataShip.length > 1) ...[
+                  GestureDetector(
+                    onTap: _previousData,
+                    child: Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                          color: mySetup.primaryColor,
+                          borderRadius: BorderRadius.circular(5)),
+                      child: Icon(
+                        Icons.arrow_back_ios_new,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
-                ),
+                ],
                 Expanded(
                   child: Text(
                     currentShip.name,
@@ -133,19 +171,21 @@ class _MainPageState extends State<MainPage> {
                     textAlign: TextAlign.center,
                   ),
                 ),
-                GestureDetector(
-                  onTap: _nextData,
-                  child: Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                        color: mySetup.primaryColor,
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Icon(
-                      Icons.arrow_forward_ios,
-                      color: Colors.white,
+                if (dummyDataShip.length > 1) ...[
+                  GestureDetector(
+                    onTap: _nextData,
+                    child: Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                          color: mySetup.primaryColor,
+                          borderRadius: BorderRadius.circular(5)),
+                      child: Icon(
+                        Icons.arrow_forward_ios,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
-                ),
+                ],
               ],
             ),
           ),
@@ -155,8 +195,8 @@ class _MainPageState extends State<MainPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TripMonitorBox(ship: currentShip),
-            // SettingRequest(),
+            if(currentUser.role == 'direksi') TripMonitorBox(ship: currentShip),
+            if(currentUser.role == 'abk' || currentUser.role == 'teknisi') SettingRequest(),
             SizedBox(height: 10),
             createInfoButtons(),
             SizedBox(height: 10),
@@ -187,7 +227,7 @@ class _MainPageState extends State<MainPage> {
         spacing: space,
         runSpacing: space,
         children: [
-          createShortCutInfo(
+          if(currentUser.role == 'direksi' || currentUser.role == 'abk' || currentUser.role == 'logistic') createShortCutInfo(
             size,
             Icons.build,
             'Perbaikan',
@@ -195,7 +235,7 @@ class _MainPageState extends State<MainPage> {
             Color.fromARGB(255, 239, 90, 111),
             onClick: () {},
           ),
-          createShortCutInfo(
+          if(currentUser.role == 'direksi' || currentUser.role == 'abk' || currentUser.role == 'logistic') createShortCutInfo(
             size,
             Icons.shopping_cart_checkout,
             'Logistic',
@@ -203,12 +243,12 @@ class _MainPageState extends State<MainPage> {
             Color.fromARGB(255, 63, 162, 246),
             onClick: () {},
           ),
-          createShortCutInfo(
+          if(currentUser.role == 'direksi') createShortCutInfo(
             size,
             Icons.mail,
             'Surat',
             '${mailsCount}',
-            Color.fromARGB(255, 239, 184, 90),
+            Color.fromARGB(255, 236, 152, 8),
             onClick: () {},
           ),
         ],
@@ -226,7 +266,7 @@ class _MainPageState extends State<MainPage> {
         spacing: space,
         runSpacing: space,
         children: [
-          createShortCutOtherMenu(
+          if(currentUser.role == 'direksi') createShortCutOtherMenu(
             size,
             Icons.shopping_cart_checkout,
             'Aproval Logistik',
@@ -239,25 +279,25 @@ class _MainPageState extends State<MainPage> {
               );
             },
           ),
-          createShortCutOtherMenu(
+          if(currentUser.role == 'direksi') createShortCutOtherMenu(
             size,
             Icons.query_builder_outlined,
             'Aproval Perbaikan',
             onClick: () {},
           ),
-          createShortCutOtherMenu(
+          if(currentUser.role == 'direksi') createShortCutOtherMenu(
             size,
             Icons.people,
             'Crew Kapal',
             onClick: () {},
           ),
-          createShortCutOtherMenu(
+          if(currentUser.role == 'abk') createShortCutOtherMenu(
             size,
             Icons.directions_boat,
             'Input LKK',
             onClick: () {},
           ),
-          createShortCutOtherMenu(
+          if(currentUser.role == 'abk') createShortCutOtherMenu(
             size,
             Icons.security_update,
             'Input PPKK',
@@ -265,24 +305,26 @@ class _MainPageState extends State<MainPage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => InputDetailDataPage(onBack: () => _navigateToMainPage(context),),
+                  builder: (context) => InputDetailDataPage(
+                    onBack: () => _navigateToMainPage(context),
+                  ),
                 ),
               );
             },
           ),
-          createShortCutOtherMenu(
+          if(currentUser.role == 'abk' || currentUser.role == 'teknisi') createShortCutOtherMenu(
             size,
             Icons.document_scanner,
             'Input Hasil Perbaikan',
             onClick: () {},
           ),
-          createShortCutOtherMenu(
+          if(currentUser.role == 'logistic') createShortCutOtherMenu(
             size,
             Icons.build,
             'Perbaikan',
             onClick: () {},
           ),
-          createShortCutOtherMenu(
+          if(currentUser.role == 'logistic') createShortCutOtherMenu(
             size,
             Icons.request_page,
             'Permintaan Logistic',

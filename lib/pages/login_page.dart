@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sariampenan/model/user.dart';
 import 'package:sariampenan/my_setup.dart';
 import 'package:sariampenan/pages/main_page.dart';
+import 'package:sariampenan/session_manager.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -11,8 +13,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final txtPassword = TextEditingController();
-  final txtHp = TextEditingController();
+  final SessionManager sessionManager = SessionManager();
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   bool showPassword = false;
   bool _isLoading = false;
 
@@ -20,10 +23,31 @@ class _LoginPageState extends State<LoginPage> {
     setState(() {
       _isLoading = true;
     });
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => MainPage()),
+
+    String phoneNumber = _phoneController.text;
+    String password = _passwordController.text;
+
+    // Cari user yang sesuai dengan data login
+    User? user = users.firstWhere(
+      (user) => user.phoneNumber == phoneNumber && user.password == password,
+      orElse: () => User(
+          id: '', name: '', phoneNumber: '', email: '', password: '', role: ''),
     );
+
+    if (user.id.isNotEmpty) {
+      // Pengguna ditemukan dan memiliki data valid
+      await sessionManager.saveUser(user);
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => MainPage()),
+      );
+    } else {
+      // Tampilkan pesan kesalahan jika login gagal
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+            content: Text('Login gagal: Nomor telepon atau kata sandi salah')),
+      );
+    }
   }
 
   @override
@@ -52,14 +76,14 @@ class _LoginPageState extends State<LoginPage> {
                 padding: EdgeInsets.only(left: 30.0, right: 30.0),
                 child: TextField(
                   autofocus: true,
-                  controller: txtHp,
+                  controller: _phoneController,
                   textInputAction: TextInputAction.next,
                   style: GoogleFonts.poppins(fontSize: 18),
                   keyboardType: TextInputType.phone,
                   onSubmitted: (value) {
                     //
                   },
-                  decoration: InputDecoration(                 
+                  decoration: InputDecoration(
                     fillColor: Colors.white,
                     filled: true,
                     hintText: "Nomor Handphone",
@@ -102,7 +126,7 @@ class _LoginPageState extends State<LoginPage> {
                 padding: EdgeInsets.only(left: 30.0, right: 30.0, top: 20.0),
                 child: TextField(
                   autofocus: true,
-                  controller: txtPassword,
+                  controller: _passwordController,
                   obscureText: !showPassword,
                   textInputAction: TextInputAction.done,
                   style: GoogleFonts.poppins(fontSize: 18),
@@ -143,26 +167,40 @@ class _LoginPageState extends State<LoginPage> {
                   style: GoogleFonts.poppins(color: mySetup.primaryColor),
                 ),
               ),
-              Container(
-                padding: EdgeInsets.only(left: 30.0, right: 30.0, top: 20.0),
-                child: GestureDetector(
-                  onTap: _login,
-                  child: Container(
-                    padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
-                    decoration: ShapeDecoration(
-                      color: mySetup.primaryColor,
+              const SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 30.0, right: 30.0, top: 5.0),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: _isLoading ? null : _login,
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 15),
+                      backgroundColor: const Color.fromARGB(255, 16, 9, 61),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5.0),
+                        borderRadius: BorderRadius.circular(8),
                       ),
                     ),
-                    child: Text(
-                      "LOGIN",
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.poppins(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16.0),
-                    ),
+                    child: _isLoading
+                        ? const SizedBox(
+                            height: 25,
+                            width: 25,
+                            child: CircularProgressIndicator(
+                              color: Colors.white,
+                              strokeWidth: 2.0,
+                            ),
+                          )
+                        : Text(
+                            'Login',
+                            style: GoogleFonts.poppins(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
                   ),
                 ),
               ),

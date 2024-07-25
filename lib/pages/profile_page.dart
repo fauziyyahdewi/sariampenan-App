@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:sariampenan/my_setup.dart';
 import 'package:sariampenan/pages/login_page.dart';
 import 'package:sariampenan/pages/main_page.dart';
+import 'package:sariampenan/session_manager.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -12,6 +13,8 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  final SessionManager sessionManager = SessionManager();
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,26 +52,34 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget content() {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => LoginPage(),
-          ),
-        );
-      },
-      child: ListTile(
-        leading: Icon(
-          Icons.logout,
-          color: Colors.red,
-        ),
-        title: Text(
-          'Logout',
-          style: GoogleFonts.poppins(
-            fontSize: 15,
-            fontWeight: FontWeight.bold,
+    Future<void> _logout() async {
+      // Panggil metode logout dari SessionManager
+      await sessionManager.clearSession();
+
+      // Arahkan ke halaman login dan hapus halaman sebelumnya dari stack
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => LoginPage()),
+        (route) => false,
+      );
+    }
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 22.0),
+      child: GestureDetector(
+        onTap: _logout,
+        child: ListTile(
+          leading: Icon(
+            Icons.logout,
             color: Colors.red,
+          ),
+          title: Text(
+            'Logout',
+            style: GoogleFonts.poppins(
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+              color: Colors.red,
+            ),
           ),
         ),
       ),
