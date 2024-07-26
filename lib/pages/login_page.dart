@@ -48,6 +48,10 @@ class _LoginPageState extends State<LoginPage> {
             content: Text('Login gagal: Nomor telepon atau kata sandi salah')),
       );
     }
+
+    setState(() {
+      _isLoading = false;
+    });
   }
 
   @override

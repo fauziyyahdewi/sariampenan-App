@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sariampenan/model/user.dart';
+import 'package:sariampenan/my_setup.dart';
 import 'package:sariampenan/pages/login_page.dart';
 import 'package:sariampenan/pages/main_page.dart';
 import 'package:sariampenan/session_manager.dart';
@@ -24,7 +25,7 @@ class MainApp extends StatelessWidget {
             return Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             // Tangani error jika terjadi
-            return Center(child: Text('Terjadi kesalahan: ${snapshot.error}'));
+            return Center(child: Text('Terjadi kesalahan: ${snapshot.error}',));
           } else {
             final user = snapshot.data!;
             // Arahkan ke LoginPage jika tidak ada user (dengan ID kosong), dan ke MainPage jika ada user
