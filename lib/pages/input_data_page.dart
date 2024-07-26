@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:sariampenan/my_setup.dart';
 import 'package:sariampenan/pages/input_detail_data_page.dart';
 import 'package:sariampenan/pages/list_request.dart';
+import 'package:sariampenan/utilities.dart';
 import 'package:sariampenan/widgets/detail_request_box.dart';
 
 class InputDataPage extends StatefulWidget {
@@ -41,14 +40,14 @@ class _InputDataPageState extends State<InputDataPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: mySetup.backgroundColor,
+        backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.white,
           leading: Padding(
             padding: const EdgeInsets.only(left: 10.0),
             child: IconButton(
               icon: Icon(Icons.arrow_back),
-              color: mySetup.primaryColor,
+              color: mColor,
               onPressed: () {
                 Navigator.push(
                   context,
@@ -59,9 +58,9 @@ class _InputDataPageState extends State<InputDataPage> {
           ),
           title: Text(
             'Input PPKK Kapal',
-            style: GoogleFonts.poppins(
+            style: tFOnt(
                 fontSize: 18,
-                color: mySetup.primaryColor,
+                color: mColor,
                 fontWeight: FontWeight.bold),
           ),
           centerTitle: true,
@@ -80,7 +79,7 @@ class _InputDataPageState extends State<InputDataPage> {
                 children: [
                   Text(
                     'Tanggal: ',
-                    style: GoogleFonts.poppins(fontSize: 13),
+                    style: tFOnt(fontSize: 13),
                   ),
                   const SizedBox(
                     height: 5,
@@ -93,7 +92,7 @@ class _InputDataPageState extends State<InputDataPage> {
                       fillColor: Colors.white,
                       filled: true,
                       hintText: "--/--/----",
-                      hintStyle: GoogleFonts.poppins(fontSize: 15),
+                      hintStyle: tFOnt(fontSize: 15),
                       border: const OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.grey, width: 1),
                         borderRadius: BorderRadius.all(Radius.circular(5.0)),
@@ -102,14 +101,14 @@ class _InputDataPageState extends State<InputDataPage> {
                         padding: EdgeInsets.all(8.0),
                         child: Icon(
                           Icons.calendar_month,
-                          color: mySetup.primaryColor,
+                          color: mColor,
                         ),
                       ),
                       prefixIconConstraints:
                           const BoxConstraints(), // harus ada agar ditengah
                       focusedBorder: OutlineInputBorder(
                         borderSide:
-                            BorderSide(color: mySetup.primaryColor, width: 1),
+                            BorderSide(color: mColor, width: 1),
                         borderRadius: BorderRadius.all(
                           Radius.circular(5.0),
                         ),
@@ -131,7 +130,7 @@ class _InputDataPageState extends State<InputDataPage> {
                 children: [
                   Text(
                     'Bagian: ',
-                    style: GoogleFonts.poppins(fontSize: 15),
+                    style: tFOnt(fontSize: 15),
                   ),
                   const SizedBox(
                     height: 5,
@@ -139,7 +138,7 @@ class _InputDataPageState extends State<InputDataPage> {
                   TextField(
                     autofocus: true,
                     textInputAction: TextInputAction.next,
-                    style: GoogleFonts.poppins(fontSize: 15),
+                    style: tFOnt(fontSize: 15),
                     onSubmitted: (value) {
                       //
                     },
@@ -147,7 +146,7 @@ class _InputDataPageState extends State<InputDataPage> {
                       fillColor: Colors.white,
                       filled: true,
                       hintText: "Pilih Bagian Kapal",
-                      hintStyle: GoogleFonts.poppins(fontSize: 15),
+                      hintStyle: tFOnt(fontSize: 15),
                       border: const OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.grey, width: 1),
                         borderRadius: BorderRadius.all(Radius.circular(5.0)),
@@ -156,7 +155,7 @@ class _InputDataPageState extends State<InputDataPage> {
                           const BoxConstraints(), // harus ada agar ditengah
                       focusedBorder: OutlineInputBorder(
                         borderSide:
-                            BorderSide(color: mySetup.primaryColor, width: 1),
+                            BorderSide(color: mColor, width: 1),
                         borderRadius: BorderRadius.all(
                           Radius.circular(5.0),
                         ),
@@ -184,7 +183,7 @@ class _InputDataPageState extends State<InputDataPage> {
                   width: double.infinity,
                   padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
                   decoration: ShapeDecoration(
-                    color: mySetup.primaryColor,
+                    color: mColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5.0),
                     ),
@@ -192,7 +191,7 @@ class _InputDataPageState extends State<InputDataPage> {
                   child: Text(
                     "Tambah Barang",
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.poppins(
+                    style: tFOnt(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 16.0),
@@ -224,7 +223,7 @@ class _InputDataPageState extends State<InputDataPage> {
                   width: double.infinity,
                   padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
                   decoration: ShapeDecoration(
-                    color: mySetup.primaryColor,
+                    color: mColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5.0),
                     ),
@@ -232,7 +231,7 @@ class _InputDataPageState extends State<InputDataPage> {
                   child: Text(
                     "Simpan",
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.poppins(
+                    style: tFOnt(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 16.0),

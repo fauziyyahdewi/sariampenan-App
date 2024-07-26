@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:sariampenan/model/ship_monitor.dart';
+import 'package:sariampenan/utilities.dart';
 
 class TripMonitorBox extends StatefulWidget {
   final ShipMonitorDataModel ship;
@@ -24,7 +24,7 @@ class _TripMonitorBoxState extends State<TripMonitorBox> {
       // decoration: BoxDecoration(border: Border.all(width: 1)),
       child: Text.rich(
         TextSpan(
-          style: GoogleFonts.poppins(fontWeight: FontWeight.w700, fontSize: 13),
+          style: tFOnt(fontWeight: FontWeight.w700, fontSize: 13),
           children: [
             TextSpan(
               text: 'Tujuan: ',
@@ -32,7 +32,7 @@ class _TripMonitorBoxState extends State<TripMonitorBox> {
                 TextSpan(
                   text:
                       '${currentShip.destinationFrom} - ${currentShip.destinationTo}\n',
-                  style: GoogleFonts.poppins(
+                  style: tFOnt(
                     fontWeight: FontWeight.bold,
                     color: Color.fromARGB(255, 236, 152, 8),
                   ),
@@ -44,7 +44,7 @@ class _TripMonitorBoxState extends State<TripMonitorBox> {
               children: [
                 TextSpan(
                   text: "${formattedDateId}\n",
-                  style: GoogleFonts.poppins(
+                  style: tFOnt(
                     fontWeight: FontWeight.w400,
                   ),
                 )
@@ -55,7 +55,7 @@ class _TripMonitorBoxState extends State<TripMonitorBox> {
               children: [
                 TextSpan(
                   text: "${formattedDateTa}",
-                  style: GoogleFonts.poppins(
+                  style: tFOnt(
                     fontWeight: FontWeight.w400,
                   ),
                 )

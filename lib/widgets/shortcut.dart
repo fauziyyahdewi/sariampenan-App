@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:sariampenan/utilities.dart';
 
 Widget createShortCutAsset(double size, String title, String imgName,
     {required Function onClick,
@@ -40,7 +40,7 @@ Widget createShortCutAsset(double size, String title, String imgName,
                   child: Text(
                     title,
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.poppins(
+                    style: tFOnt(
                       color: Colors.white,
                       fontSize: 18.0,
                       fontWeight: FontWeight.bold,
@@ -94,7 +94,7 @@ Widget createShortCutIcon(
                 child: Text(
                   title,
                   textAlign: TextAlign.center,
-                  style: GoogleFonts.poppins(
+                  style: tFOnt(
                       color: Colors.white,
                       fontSize: 20.0,
                       fontWeight: FontWeight.bold),

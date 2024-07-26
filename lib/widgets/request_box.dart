@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:sariampenan/my_setup.dart';
 import 'package:sariampenan/pages/input_data_page.dart';
+import 'package:sariampenan/utilities.dart';
 
 class RequestBox extends StatefulWidget {
   const RequestBox({super.key});
@@ -28,8 +27,8 @@ class _RequestBoxState extends State<RequestBox> {
               flex: 3,
               child: RichText(
                 text: TextSpan(
-                  style: GoogleFonts.poppins(
-                    color: mySetup.primaryColor,
+                  style: tFOnt(
+                    color: mColor,
                     fontWeight: FontWeight.bold,
                   ),
                   children: [
@@ -38,7 +37,7 @@ class _RequestBoxState extends State<RequestBox> {
                       children: [
                         TextSpan(
                           text: "SBY240613003 - PPK\n",
-                          style: GoogleFonts.poppins(
+                          style: tFOnt(
                             fontWeight: FontWeight.w700,
                             color: Color.fromARGB(255, 236, 152, 8),
                           ),
@@ -50,7 +49,7 @@ class _RequestBoxState extends State<RequestBox> {
                       children: [
                         TextSpan(
                           text: "13/06/2024\n",
-                          style: GoogleFonts.poppins(
+                          style: tFOnt(
                             fontWeight: FontWeight.w500,
                           ),
                         )
@@ -61,7 +60,7 @@ class _RequestBoxState extends State<RequestBox> {
                       children: [
                         TextSpan(
                           text: "Mesin\n",
-                          style: GoogleFonts.poppins(
+                          style: tFOnt(
                             fontWeight: FontWeight.w500,
                           ),
                         )
@@ -72,7 +71,7 @@ class _RequestBoxState extends State<RequestBox> {
                       children: [
                         TextSpan(
                           text: "Fitri\n",
-                          style: GoogleFonts.poppins(
+                          style: tFOnt(
                             fontWeight: FontWeight.w500,
                           ),
                         )
@@ -83,7 +82,7 @@ class _RequestBoxState extends State<RequestBox> {
                       children: [
                         TextSpan(
                           text: "\n",
-                          style: GoogleFonts.poppins(
+                          style: tFOnt(
                             fontWeight: FontWeight.w500,
                           ),
                         )
@@ -94,7 +93,7 @@ class _RequestBoxState extends State<RequestBox> {
                       children: [
                         TextSpan(
                           text: "\n",
-                          style: GoogleFonts.poppins(
+                          style: tFOnt(
                             fontWeight: FontWeight.w500,
                           ),
                         )
@@ -105,7 +104,7 @@ class _RequestBoxState extends State<RequestBox> {
                       children: [
                         TextSpan(
                           text: "\n",
-                          style: GoogleFonts.poppins(
+                          style: tFOnt(
                             fontWeight: FontWeight.w500,
                           ),
                         )
@@ -116,7 +115,7 @@ class _RequestBoxState extends State<RequestBox> {
                       children: [
                         TextSpan(
                           text: "\n",
-                          style: GoogleFonts.poppins(
+                          style: tFOnt(
                             fontWeight: FontWeight.w500,
                           ),
                         )
@@ -127,7 +126,7 @@ class _RequestBoxState extends State<RequestBox> {
                       children: [
                         TextSpan(
                           text: "",
-                          style: GoogleFonts.poppins(
+                          style: tFOnt(
                             fontWeight: FontWeight.w500,
                           ),
                         )
@@ -153,7 +152,7 @@ class _RequestBoxState extends State<RequestBox> {
                   child: Container(
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                        color: mySetup.primaryColor,
+                        color: mColor,
                         borderRadius: BorderRadius.circular(5)),
                     child: Icon(Icons.edit, color: Colors.white),
                   ),

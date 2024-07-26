@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sariampenan/model/user.dart';
-import 'package:sariampenan/my_setup.dart';
 import 'package:sariampenan/pages/login_page.dart';
 import 'package:sariampenan/pages/main_page.dart';
 import 'package:sariampenan/session_manager.dart';

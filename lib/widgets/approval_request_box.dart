@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:sariampenan/my_setup.dart';
 import 'package:sariampenan/pages/detail_request_page.dart';
+import 'package:sariampenan/utilities.dart';
 
 class ApprovalRequestBox extends StatefulWidget {
   const ApprovalRequestBox({super.key});
@@ -30,8 +29,8 @@ class _ApprovalRequestBoxState extends State<ApprovalRequestBox> {
               flex: 3,
               child: RichText(
                 text: TextSpan(
-                  style: GoogleFonts.poppins(
-                    color: mySetup.primaryColor,
+                  style: tFOnt(
+                    color: mColor,
                     fontWeight: FontWeight.bold,
                   ),
                   children: [
@@ -40,7 +39,7 @@ class _ApprovalRequestBoxState extends State<ApprovalRequestBox> {
                       children: [
                         TextSpan(
                           text: noPPK + "\n" ,
-                          style: GoogleFonts.poppins(
+                          style: tFOnt(
                             fontWeight: FontWeight.w700,
                             color: Color.fromARGB(255, 236, 152, 8),
                           ),
@@ -52,7 +51,7 @@ class _ApprovalRequestBoxState extends State<ApprovalRequestBox> {
                       children: [
                         TextSpan(
                           text: "13/06/2024\n",
-                          style: GoogleFonts.poppins(
+                          style: tFOnt(
                             fontWeight: FontWeight.w500,
                           ),
                         )
@@ -63,7 +62,7 @@ class _ApprovalRequestBoxState extends State<ApprovalRequestBox> {
                       children: [
                         TextSpan(
                           text: "Mesin\n",
-                          style: GoogleFonts.poppins(
+                          style: tFOnt(
                             fontWeight: FontWeight.w500,
                           ),
                         )
@@ -74,7 +73,7 @@ class _ApprovalRequestBoxState extends State<ApprovalRequestBox> {
                       children: [
                         TextSpan(
                           text: "5/10\n",
-                          style: GoogleFonts.poppins(
+                          style: tFOnt(
                             fontWeight: FontWeight.w500,
                           ),
                         )
@@ -85,7 +84,7 @@ class _ApprovalRequestBoxState extends State<ApprovalRequestBox> {
                       children: [
                         TextSpan(
                           text: "Fitri\n",
-                          style: GoogleFonts.poppins(
+                          style: tFOnt(
                             fontWeight: FontWeight.w500,
                           ),
                         )
@@ -96,7 +95,7 @@ class _ApprovalRequestBoxState extends State<ApprovalRequestBox> {
                       children: [
                         TextSpan(
                           text: "",
-                          style: GoogleFonts.poppins(
+                          style: tFOnt(
                             fontWeight: FontWeight.w500,
                           ),
                         )
@@ -122,7 +121,7 @@ class _ApprovalRequestBoxState extends State<ApprovalRequestBox> {
                   child: Container(
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                        color: mySetup.primaryColor,
+                        color: mColor,
                         borderRadius: BorderRadius.circular(5)),
                     child: Icon(Icons.remove_red_eye, color: Colors.white),
                   ),

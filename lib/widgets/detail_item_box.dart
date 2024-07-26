@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:sariampenan/my_setup.dart';
 import 'package:sariampenan/pages/approval_item_page.dart';
+import 'package:sariampenan/utilities.dart';
 
 class DetailItemBox extends StatefulWidget {
   const DetailItemBox({super.key});
@@ -28,8 +27,8 @@ class _DetailItemBoxState extends State<DetailItemBox> {
               flex: 3,
               child: RichText(
                 text: TextSpan(
-                  style: GoogleFonts.poppins(
-                    color: mySetup.primaryColor,
+                  style: tFOnt(
+                    color: mColor,
                     fontWeight: FontWeight.bold,
                   ),
                   children: [
@@ -38,7 +37,7 @@ class _DetailItemBoxState extends State<DetailItemBox> {
                       children: [
                         TextSpan(
                           text: "Lampu TL 18W\n",
-                          style: GoogleFonts.poppins(
+                          style: tFOnt(
                             fontWeight: FontWeight.w500,
                           ),
                         )
@@ -49,7 +48,7 @@ class _DetailItemBoxState extends State<DetailItemBox> {
                       children: [
                         TextSpan(
                           text: "0\n",
-                          style: GoogleFonts.poppins(
+                          style: tFOnt(
                             fontWeight: FontWeight.w500,
                           ),
                         )
@@ -60,7 +59,7 @@ class _DetailItemBoxState extends State<DetailItemBox> {
                       children: [
                         TextSpan(
                           text: "10 Pcs\n",
-                          style: GoogleFonts.poppins(
+                          style: tFOnt(
                             fontWeight: FontWeight.w500,
                           ),
                         )
@@ -71,7 +70,7 @@ class _DetailItemBoxState extends State<DetailItemBox> {
                       children: [
                         TextSpan(
                           text: "-\n",
-                          style: GoogleFonts.poppins(
+                          style: tFOnt(
                             fontWeight: FontWeight.w500,
                           ),
                         )
@@ -82,7 +81,7 @@ class _DetailItemBoxState extends State<DetailItemBox> {
                       children: [
                         TextSpan(
                           text: "Verified",
-                          style: GoogleFonts.poppins(
+                          style: tFOnt(
                             fontWeight: FontWeight.w500,
                           ),
                         )
@@ -104,7 +103,7 @@ class _DetailItemBoxState extends State<DetailItemBox> {
               child: Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                    color: mySetup.primaryColor,
+                    color: mColor,
                     borderRadius: BorderRadius.circular(5)),
                 child: const Icon(Icons.check, color: Colors.white),
               ),

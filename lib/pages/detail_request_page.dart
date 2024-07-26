@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:sariampenan/my_setup.dart';
 import 'package:sariampenan/pages/list_approval_request_page.dart';
+import 'package:sariampenan/utilities.dart';
 import 'package:sariampenan/widgets/detail_item_box.dart';
 
 class DetailRequestPage extends StatefulWidget {
@@ -32,7 +31,7 @@ class _DetailRequestPageState extends State<DetailRequestPage> {
     var height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: mySetup.backgroundColor,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         surfaceTintColor: Colors.white,
         backgroundColor: Colors.white,
@@ -40,7 +39,7 @@ class _DetailRequestPageState extends State<DetailRequestPage> {
           padding: const EdgeInsets.only(left: 10.0),
           child: IconButton(
             icon: Icon(Icons.arrow_back),
-            color: mySetup.primaryColor,
+            color: mColor,
             onPressed: () {
               Navigator.push(
                 context,
@@ -52,9 +51,9 @@ class _DetailRequestPageState extends State<DetailRequestPage> {
         ),
         title: Text(
           'Approval Barang PPK',
-          style: GoogleFonts.poppins(
+          style: tFOnt(
               fontSize: 18,
-              color: mySetup.primaryColor,
+              color: mColor,
               fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
@@ -68,17 +67,17 @@ class _DetailRequestPageState extends State<DetailRequestPage> {
                   padding: const EdgeInsets.only(right: 5.0),
                   child: Text(
                     'Nomor PPKK',
-                    style: GoogleFonts.poppins(
+                    style: tFOnt(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
-                        color: mySetup.primaryColor),
+                        color: mColor),
                   ),
                 ),
                 Expanded(
                   child: TextField(
-                    style: GoogleFonts.poppins(
+                    style: tFOnt(
                         fontSize: 14,
-                        color: mySetup.primaryColor,
+                        color: mColor,
                         fontWeight: FontWeight.w500),
                     controller: _controller,
                     onChanged: (value) {},
@@ -117,7 +116,7 @@ class _DetailRequestPageState extends State<DetailRequestPage> {
                   margin: const EdgeInsets.only(left: 5),
                   padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                      color: mySetup.primaryColor,
+                      color: mColor,
                       borderRadius: BorderRadius.circular(5)),
                   child: Icon(
                     Icons.check,

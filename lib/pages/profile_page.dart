@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:sariampenan/my_setup.dart';
 import 'package:sariampenan/pages/login_page.dart';
 import 'package:sariampenan/pages/main_page.dart';
 import 'package:sariampenan/session_manager.dart';
+import 'package:sariampenan/utilities.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -18,14 +17,18 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: mySetup.backgroundColor,
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        surfaceTintColor: Colors.white,
         backgroundColor: Colors.white,
         leading: Padding(
           padding: const EdgeInsets.only(left: 10.0),
           child: IconButton(
-            icon: Icon(Icons.arrow_back),
-            color: mySetup.primaryColor,
+            icon: Padding(
+              padding: const EdgeInsets.only(left: 10.0),
+              child: Icon(Icons.arrow_back),
+            ),
+            color: mColor,
             onPressed: () {
               Navigator.push(
                 context,
@@ -35,10 +38,10 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
         ),
         title: Text(
-          'Profile Page',
-          style: GoogleFonts.poppins(
+          'Profile',
+          style: tFOnt(
               fontSize: 18,
-              color: mySetup.primaryColor,
+              color: mColor,
               fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
@@ -69,13 +72,13 @@ class _ProfilePageState extends State<ProfilePage> {
       child: GestureDetector(
         onTap: _logout,
         child: ListTile(
-          leading: Icon(
+          leading: const Icon(
             Icons.logout,
             color: Colors.red,
           ),
           title: Text(
             'Logout',
-            style: GoogleFonts.poppins(
+            style: tFOnt(
               fontSize: 15,
               fontWeight: FontWeight.bold,
               color: Colors.red,

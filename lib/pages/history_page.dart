@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:sariampenan/my_setup.dart';
 import 'package:sariampenan/pages/approval_item_page.dart';
+import 'package:sariampenan/utilities.dart';
 import 'package:sariampenan/widgets/history_supply_box.dart';
 
 class HistoryPage extends StatefulWidget {
@@ -15,14 +14,14 @@ class _HistoryPageState extends State<HistoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: mySetup.backgroundColor,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         leading: Padding(
           padding: const EdgeInsets.only(left: 10.0),
           child: IconButton(
             icon: Icon(Icons.arrow_back),
-            color: mySetup.primaryColor,
+            color: mColor,
             onPressed: () {
               Navigator.push(
                 context,
@@ -33,9 +32,9 @@ class _HistoryPageState extends State<HistoryPage> {
         ),
         title: Text(
           'History Barang',
-          style: GoogleFonts.poppins(
+          style: tFOnt(
             fontSize: 18,
-            color: mySetup.primaryColor,
+            color: mColor,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -52,9 +51,9 @@ class _HistoryPageState extends State<HistoryPage> {
                 children: [
                   Text(
                     'Detail',
-                    style: GoogleFonts.poppins(
+                    style: tFOnt(
                       fontSize: 15,
-                      color: mySetup.primaryColor,
+                      color: mColor,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -63,17 +62,17 @@ class _HistoryPageState extends State<HistoryPage> {
                   ),
                   Text(
                     'Kapal: ' + 'Kargo',
-                    style: GoogleFonts.poppins(
+                    style: tFOnt(
                       fontSize: 13,
-                      color: mySetup.primaryColor,
+                      color: mColor,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
                   Text(
                     'Bagian: ' + 'Kabin',
-                    style: GoogleFonts.poppins(
+                    style: tFOnt(
                       fontSize: 13,
-                      color: mySetup.primaryColor,
+                      color: mColor,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -92,9 +91,9 @@ class _HistoryPageState extends State<HistoryPage> {
                 shape: const Border(),
                 title: Text(
                   'History Supply',
-                  style: GoogleFonts.poppins(
+                  style: tFOnt(
                     fontSize: 15,
-                    color: mySetup.primaryColor,
+                    color: mColor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -113,9 +112,9 @@ class _HistoryPageState extends State<HistoryPage> {
                 shape: const Border(),
                 title: Text(
                   'History Approval',
-                  style: GoogleFonts.poppins(
+                  style: tFOnt(
                     fontSize: 15,
-                    color: mySetup.primaryColor,
+                    color: mColor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

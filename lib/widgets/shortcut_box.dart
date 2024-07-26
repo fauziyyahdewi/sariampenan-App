@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:sariampenan/my_setup.dart';
+import 'package:sariampenan/utilities.dart';
 
 Widget createShortCutInfo(
     double size, IconData icon, String title, String count, Color color,
@@ -24,7 +23,7 @@ Widget createShortCutInfo(
               child: Icon(
                 icon,
                 size: size * 2 / 9,
-                color: mySetup.primaryColor,
+                color: mColor,
               ),
             ),
             Expanded(
@@ -32,7 +31,7 @@ Widget createShortCutInfo(
                 children: [
                   Text(
                     title,
-                    style: GoogleFonts.poppins(
+                    style: tFOnt(
                       fontSize: 13,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
@@ -44,7 +43,7 @@ Widget createShortCutInfo(
                   ),
                   Text(
                     '$count',
-                    style: GoogleFonts.poppins(
+                    style: tFOnt(
                         fontSize: 15,
                         color: Colors.white,
                         fontWeight: FontWeight.w500),
@@ -89,7 +88,7 @@ Widget createShortCutOtherMenu(double btnSize, IconData icon, String title,
             ),
             Text(
               title,
-              style: GoogleFonts.poppins(
+              style: tFOnt(
                 fontSize: btnSize * 1 / 10,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,

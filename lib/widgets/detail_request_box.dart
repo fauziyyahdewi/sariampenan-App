@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:sariampenan/my_setup.dart';
 import 'package:sariampenan/pages/detail_request_page.dart';
 import 'package:sariampenan/pages/input_detail_data_page.dart';
+import 'package:sariampenan/utilities.dart';
 
 class DetailRequestBox extends StatefulWidget {
   const DetailRequestBox({super.key});
@@ -35,7 +34,7 @@ class _DetailRequestBoxState extends State<DetailRequestBox> {
               padding: const EdgeInsets.only(right: 10),
               child: Text(
                 '1.',
-                style: GoogleFonts.poppins(
+                style: tFOnt(
                   fontSize: 12,
                 ),
               ),
@@ -44,8 +43,8 @@ class _DetailRequestBoxState extends State<DetailRequestBox> {
               flex: 3,
               child: RichText(
                 text: TextSpan(
-                  style: GoogleFonts.poppins(
-                      color: mySetup.primaryColor,
+                  style: tFOnt(
+                      color: mColor,
                       fontWeight: FontWeight.bold,
                       fontSize: 12),
                   children: [
@@ -54,7 +53,7 @@ class _DetailRequestBoxState extends State<DetailRequestBox> {
                       children: [
                         TextSpan(
                           text: "Lakban Bening\n",
-                          style: GoogleFonts.poppins(
+                          style: tFOnt(
                             fontWeight: FontWeight.w400,
                           ),
                         )
@@ -65,7 +64,7 @@ class _DetailRequestBoxState extends State<DetailRequestBox> {
                       children: [
                         TextSpan(
                           text: "\n",
-                          style: GoogleFonts.poppins(
+                          style: tFOnt(
                             fontWeight: FontWeight.w400,
                           ),
                         )
@@ -76,7 +75,7 @@ class _DetailRequestBoxState extends State<DetailRequestBox> {
                       children: [
                         TextSpan(
                           text: "2 Pcs",
-                          style: GoogleFonts.poppins(
+                          style: tFOnt(
                             fontWeight: FontWeight.w400,
                           ),
                         )
@@ -101,7 +100,7 @@ class _DetailRequestBoxState extends State<DetailRequestBox> {
                     child: Container(
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                          color: mySetup.primaryColor,
+                          color: mColor,
                           borderRadius: BorderRadius.circular(5)),
                       child: const Icon(Icons.edit, color: Colors.white),
                     ),

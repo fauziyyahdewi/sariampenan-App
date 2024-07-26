@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:sariampenan/model/user.dart';
-import 'package:sariampenan/my_setup.dart';
 import 'package:sariampenan/pages/main_page.dart';
 import 'package:sariampenan/session_manager.dart';
+import 'package:sariampenan/utilities.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -45,7 +44,21 @@ class _LoginPageState extends State<LoginPage> {
       // Tampilkan pesan kesalahan jika login gagal
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-            content: Text('Login gagal: Nomor telepon atau kata sandi salah')),
+          content: Text(
+            'Login gagal: Nomor telepon atau kata sandi salah',
+            style: tFOnt(
+              fontSize: 13,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          duration: const Duration(milliseconds: 1500),
+          width: double.infinity,
+          behavior: SnackBarBehavior.floating,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5.0),
+          ),
+          backgroundColor: Colors.red,
+        ),
       );
     }
 
@@ -82,7 +95,7 @@ class _LoginPageState extends State<LoginPage> {
                   autofocus: true,
                   controller: _phoneController,
                   textInputAction: TextInputAction.next,
-                  style: GoogleFonts.poppins(fontSize: 18),
+                  style: tFOnt(fontSize: 18),
                   keyboardType: TextInputType.phone,
                   onSubmitted: (value) {
                     //
@@ -91,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                     fillColor: Colors.white,
                     filled: true,
                     hintText: "Nomor Handphone",
-                    hintStyle: GoogleFonts.poppins(fontSize: 18),
+                    hintStyle: tFOnt(fontSize: 18),
                     contentPadding: EdgeInsets.only(left: 8.0),
                     border: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey, width: 1),
@@ -104,8 +117,8 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       child: Text(
                         '+62',
-                        style: GoogleFonts.poppins(
-                            color: mySetup.primaryColor, //  Colors.red,
+                        style: tFOnt(
+                            color: mColor, //  Colors.red,
                             fontSize: 18,
                             fontWeight: FontWeight.bold),
                       ),
@@ -123,7 +136,7 @@ class _LoginPageState extends State<LoginPage> {
                 padding: EdgeInsets.only(left: 30.0, right: 30.0, top: 5.0),
                 child: Text(
                   'Masukkan Nomor Handphone',
-                  style: GoogleFonts.poppins(color: mySetup.primaryColor),
+                  style: tFOnt(color: mColor),
                 ),
               ),
               Container(
@@ -133,13 +146,13 @@ class _LoginPageState extends State<LoginPage> {
                   controller: _passwordController,
                   obscureText: !showPassword,
                   textInputAction: TextInputAction.done,
-                  style: GoogleFonts.poppins(fontSize: 18),
+                  style: tFOnt(fontSize: 18),
                   onSubmitted: (value) {},
                   decoration: InputDecoration(
                     fillColor: Colors.white,
                     filled: true,
                     hintText: "Kata Sandi",
-                    hintStyle: GoogleFonts.poppins(fontSize: 18),
+                    hintStyle: tFOnt(fontSize: 18),
                     contentPadding: EdgeInsets.only(left: 8.0),
                     border: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey, width: 1),
@@ -168,7 +181,7 @@ class _LoginPageState extends State<LoginPage> {
                 padding: EdgeInsets.only(left: 30.0, right: 30.0, top: 5.0),
                 child: Text(
                   'Masukkan Kata Sandi',
-                  style: GoogleFonts.poppins(color: mySetup.primaryColor),
+                  style: tFOnt(color: mColor),
                 ),
               ),
               const SizedBox(
@@ -199,7 +212,7 @@ class _LoginPageState extends State<LoginPage> {
                           )
                         : Text(
                             'Login',
-                            style: GoogleFonts.poppins(
+                            style: tFOnt(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                               color: Colors.white,

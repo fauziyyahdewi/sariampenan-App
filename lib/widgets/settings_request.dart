@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:sariampenan/utilities.dart';
 
 class SettingRequest extends StatefulWidget {
   const SettingRequest({super.key});
@@ -19,7 +19,7 @@ class _SettingRequestState extends State<SettingRequest> {
           children: [
             Text(
               'Tugas Perbaikan Kapal:',
-              style: GoogleFonts.poppins(
+              style: tFOnt(
                 fontSize: 13,
                 fontWeight: FontWeight.bold,
               ),
@@ -28,7 +28,7 @@ class _SettingRequestState extends State<SettingRequest> {
               padding: const EdgeInsets.only(left: 15.0),
               child: Text(
                 '- ' + 'Perbaikan Kapal Bagian A',
-                style: GoogleFonts.poppins(
+                style: tFOnt(
                   fontSize: 13,
                 ),
               ),
@@ -37,7 +37,7 @@ class _SettingRequestState extends State<SettingRequest> {
               padding: const EdgeInsets.only(left: 15.0),
               child: Text(
                 '- ' + 'Perbaikan Kapal Bagian B',
-                style: GoogleFonts.poppins(
+                style: tFOnt(
                   fontSize: 13,
                 ),
               ),
@@ -46,7 +46,7 @@ class _SettingRequestState extends State<SettingRequest> {
               padding: const EdgeInsets.only(left: 15.0),
               child: Text(
                 '- ' + 'Perbaikan Kapal Bagian C',
-                style: GoogleFonts.poppins(
+                style: tFOnt(
                   fontSize: 13,
                 ),
               ),

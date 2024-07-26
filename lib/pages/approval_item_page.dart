@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:sariampenan/my_setup.dart';
 import 'package:sariampenan/pages/history_page.dart';
 import 'package:sariampenan/pages/main_page.dart';
+import 'package:sariampenan/utilities.dart';
 
 class ApproveItemPage extends StatefulWidget {
   const ApproveItemPage({super.key});
@@ -23,7 +22,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: mySetup.backgroundColor,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         surfaceTintColor: Colors.white,
         backgroundColor: Colors.white,
@@ -31,7 +30,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
           padding: const EdgeInsets.only(left: 10.0),
           child: IconButton(
             icon: Icon(Icons.arrow_back),
-            color: mySetup.primaryColor,
+            color: mColor,
             onPressed: () {
               Navigator.push(
                 context,
@@ -42,9 +41,9 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
         ),
         title: Text(
           'Approval PPKK Kapal',
-          style: GoogleFonts.poppins(
+          style: tFOnt(
               fontSize: 18,
-              color: mySetup.primaryColor,
+              color: mColor,
               fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
@@ -67,7 +66,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                       children: [
                         Text(
                           'Nama Barang: ',
-                          style: GoogleFonts.poppins(fontSize: 13),
+                          style: tFOnt(fontSize: 13),
                         ),
                         const SizedBox(
                           height: 5,
@@ -75,7 +74,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                         TextField(
                           autofocus: true,
                           textInputAction: TextInputAction.next,
-                          style: GoogleFonts.poppins(fontSize: 13),
+                          style: tFOnt(fontSize: 13),
                           onSubmitted: (value) {
                             //
                           },
@@ -83,7 +82,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                             fillColor: Colors.white,
                             filled: true,
                             hintText: "Pilih Nama Barang",
-                            hintStyle: GoogleFonts.poppins(fontSize: 13),
+                            hintStyle: tFOnt(fontSize: 13),
                             border: const OutlineInputBorder(
                               borderSide:
                                   BorderSide(color: Colors.grey, width: 1),
@@ -94,7 +93,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                                 const BoxConstraints(), // harus ada agar ditengah
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                  color: mySetup.primaryColor, width: 1),
+                                  color: mColor, width: 1),
                               borderRadius: BorderRadius.all(
                                 Radius.circular(5.0),
                               ),
@@ -116,7 +115,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                       children: [
                         Text(
                           'Kota Supply: ',
-                          style: GoogleFonts.poppins(fontSize: 13),
+                          style: tFOnt(fontSize: 13),
                         ),
                         const SizedBox(
                           height: 5,
@@ -124,7 +123,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                         TextField(
                           autofocus: true,
                           textInputAction: TextInputAction.next,
-                          style: GoogleFonts.poppins(fontSize: 13),
+                          style: tFOnt(fontSize: 13),
                           onSubmitted: (value) {
                             //
                           },
@@ -132,7 +131,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                             fillColor: Colors.white,
                             filled: true,
                             hintText: "Pilih Kota",
-                            hintStyle: GoogleFonts.poppins(fontSize: 13),
+                            hintStyle: tFOnt(fontSize: 13),
                             border: const OutlineInputBorder(
                               borderSide:
                                   BorderSide(color: Colors.grey, width: 1),
@@ -143,7 +142,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                                 const BoxConstraints(), // harus ada agar ditengah
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                  color: mySetup.primaryColor, width: 1),
+                                  color: mColor, width: 1),
                               borderRadius: BorderRadius.all(
                                 Radius.circular(5.0),
                               ),
@@ -165,7 +164,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                       children: [
                         Text(
                           'Sisa Stock',
-                          style: GoogleFonts.poppins(fontSize: 13),
+                          style: tFOnt(fontSize: 13),
                         ),
                         const SizedBox(
                           height: 5,
@@ -178,7 +177,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                                 controller: txtStock,
                                 readOnly: true,
                                 textAlign: TextAlign.center,
-                                style: GoogleFonts.poppins(fontSize: 13),
+                                style: tFOnt(fontSize: 13),
                                 keyboardType: TextInputType.number,
                                 onSubmitted: (value) {
                                   setState(() {
@@ -189,7 +188,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                                   fillColor: Colors.white,
                                   filled: true,
                                   hintText: "0",
-                                  hintStyle: GoogleFonts.poppins(fontSize: 13),
+                                  hintStyle: tFOnt(fontSize: 13),
                                   border: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: Colors.grey, width: 1),
@@ -200,7 +199,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                                       const BoxConstraints(), // harus ada agar ditengah
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                        color: mySetup.primaryColor, width: 1),
+                                        color: mColor, width: 1),
                                     borderRadius: BorderRadius.all(
                                       Radius.circular(5.0),
                                     ),
@@ -237,7 +236,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                                 decoration: InputDecoration(
                                   fillColor: Colors.white,
                                   filled: true,
-                                  hintStyle: GoogleFonts.poppins(fontSize: 13),
+                                  hintStyle: tFOnt(fontSize: 13),
                                   border: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: Colors.grey, width: 1),
@@ -262,7 +261,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                                       return DropdownMenuItem<String>(
                                         value: value,
                                         child: Text(value,
-                                            style: GoogleFonts.poppins(
+                                            style: tFOnt(
                                                 fontSize: 13)),
                                       );
                                     }).toList(),
@@ -272,7 +271,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                                       });
                                     },
                                     isExpanded: true,
-                                    style: GoogleFonts.poppins(
+                                    style: tFOnt(
                                         fontSize: 13, color: Colors.black),
                                   ),
                                 ),
@@ -295,7 +294,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                       children: [
                         Text(
                           'Permintaan ',
-                          style: GoogleFonts.poppins(fontSize: 13),
+                          style: tFOnt(fontSize: 13),
                         ),
                         const SizedBox(
                           height: 5,
@@ -308,7 +307,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                                 controller: txtRequest,
                                 readOnly: true,
                                 textAlign: TextAlign.center,
-                                style: GoogleFonts.poppins(fontSize: 13),
+                                style: tFOnt(fontSize: 13),
                                 keyboardType: TextInputType.number,
                                 onSubmitted: (value) {
                                   setState(() {
@@ -319,7 +318,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                                   fillColor: Colors.white,
                                   filled: true,
                                   hintText: "0",
-                                  hintStyle: GoogleFonts.poppins(fontSize: 13),
+                                  hintStyle: tFOnt(fontSize: 13),
                                   border: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: Colors.grey, width: 1),
@@ -330,7 +329,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                                       const BoxConstraints(), // harus ada agar ditengah
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                        color: mySetup.primaryColor, width: 1),
+                                        color: mColor, width: 1),
                                     borderRadius: BorderRadius.all(
                                       Radius.circular(5.0),
                                     ),
@@ -368,7 +367,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                                   fillColor: Colors.white,
                                   filled: true,
                                   hintText: 'Pilih Satuan',
-                                  hintStyle: GoogleFonts.poppins(fontSize: 13),
+                                  hintStyle: tFOnt(fontSize: 13),
                                   border: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: Colors.grey, width: 1),
@@ -393,7 +392,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                                       return DropdownMenuItem<String>(
                                         value: value,
                                         child: Text(value,
-                                            style: GoogleFonts.poppins(
+                                            style: tFOnt(
                                                 fontSize: 13)),
                                       );
                                     }).toList(),
@@ -403,7 +402,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                                       });
                                     },
                                     isExpanded: true,
-                                    style: GoogleFonts.poppins(
+                                    style: tFOnt(
                                         fontSize: 13, color: Colors.black),
                                   ),
                                 ),
@@ -426,7 +425,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                       children: [
                         Text(
                           'Keterangan ',
-                          style: GoogleFonts.poppins(fontSize: 13),
+                          style: tFOnt(fontSize: 13),
                         ),
                         const SizedBox(
                           height: 5,
@@ -435,13 +434,13 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                           child: TextField(
                             autofocus: true,
                             textInputAction: TextInputAction.next,
-                            style: GoogleFonts.poppins(fontSize: 13),
+                            style: tFOnt(fontSize: 13),
                             maxLines: 6,
                             decoration: InputDecoration(
                               fillColor: Colors.white,
                               filled: true,
                               hintText: "Type here...",
-                              hintStyle: GoogleFonts.poppins(fontSize: 13),
+                              hintStyle: tFOnt(fontSize: 13),
                               border: const OutlineInputBorder(
                                 borderSide:
                                     BorderSide(color: Colors.grey, width: 1),
@@ -451,7 +450,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                               prefixIconConstraints: const BoxConstraints(),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                    color: mySetup.primaryColor, width: 1),
+                                    color: mColor, width: 1),
                                 borderRadius: const BorderRadius.all(
                                   Radius.circular(5.0),
                                 ),
@@ -480,7 +479,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                     width: double.infinity,
                     padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
                     decoration: ShapeDecoration(
-                      color: mySetup.primaryColor,
+                      color: mColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5.0),
                       ),
@@ -488,7 +487,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                     child: Text(
                       "View History",
                       textAlign: TextAlign.center,
-                      style: GoogleFonts.poppins(
+                      style: tFOnt(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                           fontSize: 16.0),
@@ -508,7 +507,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                   children: [
                     Text(
                       'Qnt Approval',
-                      style: GoogleFonts.poppins(fontSize: 13),
+                      style: tFOnt(fontSize: 13),
                     ),
                     const SizedBox(
                       height: 5,
@@ -521,7 +520,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                             controller: txtStock,
                             readOnly: true,
                             textAlign: TextAlign.center,
-                            style: GoogleFonts.poppins(fontSize: 13),
+                            style: tFOnt(fontSize: 13),
                             keyboardType: TextInputType.number,
                             onSubmitted: (value) {
                               setState(() {
@@ -532,7 +531,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                               fillColor: Colors.white,
                               filled: true,
                               hintText: "0",
-                              hintStyle: GoogleFonts.poppins(fontSize: 13),
+                              hintStyle: tFOnt(fontSize: 13),
                               border: const OutlineInputBorder(
                                 borderSide:
                                     BorderSide(color: Colors.grey, width: 1),
@@ -543,7 +542,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                                   const BoxConstraints(), // harus ada agar ditengah
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                    color: mySetup.primaryColor, width: 1),
+                                    color: mColor, width: 1),
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(5.0),
                                 ),
@@ -580,7 +579,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                             decoration: InputDecoration(
                               fillColor: Colors.white,
                               filled: true,
-                              hintStyle: GoogleFonts.poppins(fontSize: 13),
+                              hintStyle: tFOnt(fontSize: 13),
                               border: const OutlineInputBorder(
                                 borderSide:
                                     BorderSide(color: Colors.grey, width: 1),
@@ -606,7 +605,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                                     value: value,
                                     child: Text(value,
                                         style:
-                                            GoogleFonts.poppins(fontSize: 13)),
+                                            tFOnt(fontSize: 13)),
                                   );
                                 }).toList(),
                                 onChanged: (newValue) {
@@ -615,7 +614,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                                   });
                                 },
                                 isExpanded: true,
-                                style: GoogleFonts.poppins(
+                                style: tFOnt(
                                     fontSize: 13, color: Colors.black),
                               ),
                             ),
@@ -643,7 +642,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                     width: double.infinity,
                     padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
                     decoration: ShapeDecoration(
-                      color: mySetup.primaryColor,
+                      color: mColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5.0),
                       ),
@@ -651,7 +650,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                     child: Text(
                       "Approved",
                       textAlign: TextAlign.center,
-                      style: GoogleFonts.poppins(
+                      style: tFOnt(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                           fontSize: 16.0),
