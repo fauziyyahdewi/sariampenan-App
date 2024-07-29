@@ -1,3 +1,4 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:sariampenan/model/user.dart';
 import 'package:sariampenan/pages/main_page.dart';
@@ -17,6 +18,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _passwordController = TextEditingController();
   bool showPassword = false;
   bool _isLoading = false;
+  bool _isFlushbarShown = false;
 
   void _login() async {
     setState(() {
@@ -40,26 +42,56 @@ class _LoginPageState extends State<LoginPage> {
         context,
         MaterialPageRoute(builder: (context) => MainPage()),
       );
-    } else {
-      // Tampilkan pesan kesalahan jika login gagal
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            'Login gagal: Nomor telepon atau kata sandi salah',
+
+      if (!_isFlushbarShown) {
+        setState(() {
+          _isFlushbarShown = true;
+        });
+
+        // Tampilkan pesan kesalahan jika login gagal
+        Flushbar(
+          messageText: Text(
+            'Login Berhasil',
             style: tFOnt(
-              fontSize: 13,
-              fontWeight: FontWeight.bold,
-            ),
+                fontSize: 13, fontWeight: FontWeight.bold, color: Colors.white),
           ),
           duration: const Duration(milliseconds: 1500),
-          width: double.infinity,
-          behavior: SnackBarBehavior.floating,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(5.0),
+          margin: EdgeInsets.symmetric(horizontal: 22),
+          borderRadius: BorderRadius.circular(5),
+          backgroundColor: Colors.green,
+          flushbarPosition: FlushbarPosition.TOP,
+        ).show(context).then((_) {
+          // Set flag back to false when Flushbar is dismissed
+          setState(() {
+            _isFlushbarShown = false;
+          });
+        });
+      }
+    } else {
+      if (!_isFlushbarShown) {
+        setState(() {
+          _isFlushbarShown = true;
+        });
+
+        // Tampilkan pesan kesalahan jika login gagal
+        Flushbar(
+          messageText: Text(
+            'Login gagal: Nomor telepon atau kata sandi salah',
+            style: tFOnt(
+                fontSize: 13, fontWeight: FontWeight.bold, color: Colors.white),
           ),
+          duration: const Duration(milliseconds: 1500),
+          margin: EdgeInsets.symmetric(horizontal: 22),
+          borderRadius: BorderRadius.circular(5),
           backgroundColor: Colors.red,
-        ),
-      );
+          flushbarPosition: FlushbarPosition.TOP,
+        ).show(context).then((_) {
+          // Set flag back to false when Flushbar is dismissed
+          setState(() {
+            _isFlushbarShown = false;
+          });
+        });
+      }
     }
 
     setState(() {
@@ -90,7 +122,7 @@ class _LoginPageState extends State<LoginPage> {
           delegate: SliverChildListDelegate(
             [
               Container(
-                padding: EdgeInsets.only(left: 30.0, right: 30.0),
+                padding: const EdgeInsets.only(left: 30.0, right: 30.0),
                 child: TextField(
                   autofocus: true,
                   controller: _phoneController,
@@ -136,7 +168,10 @@ class _LoginPageState extends State<LoginPage> {
                 padding: EdgeInsets.only(left: 30.0, right: 30.0, top: 5.0),
                 child: Text(
                   'Masukkan Nomor Handphone',
-                  style: tFOnt(color: mColor),
+                  style: TextStyle(
+                    fontFamily: 'Poppins',
+                    color: mColor,
+                  ),
                 ),
               ),
               Container(
@@ -178,10 +213,14 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.only(left: 30.0, right: 30.0, top: 5.0),
-                child: Text(
+                padding:
+                    const EdgeInsets.only(left: 30.0, right: 30.0, top: 5.0),
+                child: const Text(
                   'Masukkan Kata Sandi',
-                  style: tFOnt(color: mColor),
+                  style: TextStyle(
+                    fontFamily: 'Poppins',
+                    color: mColor,
+                  ),
                 ),
               ),
               const SizedBox(
@@ -212,7 +251,8 @@ class _LoginPageState extends State<LoginPage> {
                           )
                         : Text(
                             'Login',
-                            style: tFOnt(
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                               color: Colors.white,

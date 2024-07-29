@@ -12,7 +12,7 @@ class _SettingRequestState extends State<SettingRequest> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
+        padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 8),
         // decoration: BoxDecoration(border: Border.all(width: 1)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

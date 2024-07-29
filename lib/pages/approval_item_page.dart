@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sariampenan/pages/detail_request_page.dart';
 import 'package:sariampenan/pages/history_page.dart';
-import 'package:sariampenan/pages/main_page.dart';
+import 'package:sariampenan/pages/list_approval_request_page.dart';
 import 'package:sariampenan/utilities.dart';
 
 class ApproveItemPage extends StatefulWidget {
@@ -11,13 +12,19 @@ class ApproveItemPage extends StatefulWidget {
 }
 
 class _ApproveItemPageState extends State<ApproveItemPage> {
-  int quantity = 0;
+  int sisaStock = 0;
+  int request = 0;
+  int approval = 0;
   String selectedStock = 'pcs';
   String selectedRequest = 'pcs';
+  String selectedApproval = 'pcs';
   List<String> units = ['pcs', 'kg', 'ltr'];
+  
+  final String noPPK = "SBY240613003 - PPK";
 
   final TextEditingController txtStock = TextEditingController();
   final TextEditingController txtRequest = TextEditingController();
+  final TextEditingController txtApproval = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -34,17 +41,18 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MainPage()),
+                MaterialPageRoute(
+                    builder: (context) => DetailRequestPage(
+                          noPPK: noPPK,
+                        )),
               );
             },
           ),
         ),
         title: Text(
           'Approval PPKK Kapal',
-          style: tFOnt(
-              fontSize: 18,
-              color: mColor,
-              fontWeight: FontWeight.bold),
+          style:
+              tFOnt(fontSize: 18, color: mColor, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
       ),
@@ -92,8 +100,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                             prefixIconConstraints:
                                 const BoxConstraints(), // harus ada agar ditengah
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: mColor, width: 1),
+                              borderSide: BorderSide(color: mColor, width: 1),
                               borderRadius: BorderRadius.all(
                                 Radius.circular(5.0),
                               ),
@@ -141,8 +148,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                             prefixIconConstraints:
                                 const BoxConstraints(), // harus ada agar ditengah
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: mColor, width: 1),
+                              borderSide: BorderSide(color: mColor, width: 1),
                               borderRadius: BorderRadius.all(
                                 Radius.circular(5.0),
                               ),
@@ -181,7 +187,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                                 keyboardType: TextInputType.number,
                                 onSubmitted: (value) {
                                   setState(() {
-                                    quantity = int.tryParse(value) ?? 0;
+                                    sisaStock = int.tryParse(value) ?? 0;
                                   });
                                 },
                                 decoration: InputDecoration(
@@ -198,8 +204,8 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                                   prefixIconConstraints:
                                       const BoxConstraints(), // harus ada agar ditengah
                                   focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: mColor, width: 1),
+                                    borderSide:
+                                        BorderSide(color: mColor, width: 1),
                                     borderRadius: BorderRadius.all(
                                       Radius.circular(5.0),
                                     ),
@@ -207,8 +213,8 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                                   suffixIcon: IconButton(
                                     onPressed: () {
                                       setState(() {
-                                        quantity++;
-                                        txtStock.text = quantity.toString();
+                                        sisaStock++;
+                                        txtStock.text = sisaStock.toString();
                                       });
                                     },
                                     icon: Icon(Icons.add),
@@ -216,8 +222,8 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                                   prefixIcon: IconButton(
                                     onPressed: () {
                                       setState(() {
-                                        quantity--;
-                                        txtStock.text = quantity.toString();
+                                        sisaStock--;
+                                        txtStock.text = sisaStock.toString();
                                       });
                                     },
                                     icon: Icon(Icons.remove),
@@ -225,7 +231,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                                 ),
                                 onChanged: (value) {
                                   setState(() {
-                                    quantity = int.tryParse(value) ?? 0;
+                                    sisaStock = int.tryParse(value) ?? 0;
                                   });
                                 },
                               ),
@@ -261,8 +267,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                                       return DropdownMenuItem<String>(
                                         value: value,
                                         child: Text(value,
-                                            style: tFOnt(
-                                                fontSize: 13)),
+                                            style: tFOnt(fontSize: 13)),
                                       );
                                     }).toList(),
                                     onChanged: (newValue) {
@@ -311,7 +316,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                                 keyboardType: TextInputType.number,
                                 onSubmitted: (value) {
                                   setState(() {
-                                    quantity = int.tryParse(value) ?? 0;
+                                    request = int.tryParse(value) ?? 0;
                                   });
                                 },
                                 decoration: InputDecoration(
@@ -328,8 +333,8 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                                   prefixIconConstraints:
                                       const BoxConstraints(), // harus ada agar ditengah
                                   focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: mColor, width: 1),
+                                    borderSide:
+                                        BorderSide(color: mColor, width: 1),
                                     borderRadius: BorderRadius.all(
                                       Radius.circular(5.0),
                                     ),
@@ -337,8 +342,8 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                                   suffixIcon: IconButton(
                                     onPressed: () {
                                       setState(() {
-                                        quantity++;
-                                        txtRequest.text = quantity.toString();
+                                        request++;
+                                        txtRequest.text = request.toString();
                                       });
                                     },
                                     icon: Icon(Icons.add),
@@ -346,8 +351,8 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                                   prefixIcon: IconButton(
                                     onPressed: () {
                                       setState(() {
-                                        quantity--;
-                                        txtRequest.text = quantity.toString();
+                                        request--;
+                                        txtRequest.text = request.toString();
                                       });
                                     },
                                     icon: Icon(Icons.remove),
@@ -355,7 +360,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                                 ),
                                 onChanged: (value) {
                                   setState(() {
-                                    quantity = int.tryParse(value) ?? 0;
+                                    request = int.tryParse(value) ?? 0;
                                   });
                                 },
                               ),
@@ -392,8 +397,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                                       return DropdownMenuItem<String>(
                                         value: value,
                                         child: Text(value,
-                                            style: tFOnt(
-                                                fontSize: 13)),
+                                            style: tFOnt(fontSize: 13)),
                                       );
                                     }).toList(),
                                     onChanged: (newValue) {
@@ -449,8 +453,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                               ),
                               prefixIconConstraints: const BoxConstraints(),
                               focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: mColor, width: 1),
+                                borderSide: BorderSide(color: mColor, width: 1),
                                 borderRadius: const BorderRadius.all(
                                   Radius.circular(5.0),
                                 ),
@@ -517,14 +520,14 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                         Expanded(
                           flex: 2,
                           child: TextField(
-                            controller: txtStock,
+                            controller: txtApproval,
                             readOnly: true,
                             textAlign: TextAlign.center,
                             style: tFOnt(fontSize: 13),
                             keyboardType: TextInputType.number,
                             onSubmitted: (value) {
                               setState(() {
-                                quantity = int.tryParse(value) ?? 0;
+                                approval = int.tryParse(value) ?? 0;
                               });
                             },
                             decoration: InputDecoration(
@@ -541,8 +544,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                               prefixIconConstraints:
                                   const BoxConstraints(), // harus ada agar ditengah
                               focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: mColor, width: 1),
+                                borderSide: BorderSide(color: mColor, width: 1),
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(5.0),
                                 ),
@@ -550,8 +552,8 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                               suffixIcon: IconButton(
                                 onPressed: () {
                                   setState(() {
-                                    quantity++;
-                                    txtStock.text = quantity.toString();
+                                    approval++;
+                                    txtApproval.text = approval.toString();
                                   });
                                 },
                                 icon: Icon(Icons.add),
@@ -559,8 +561,8 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                               prefixIcon: IconButton(
                                 onPressed: () {
                                   setState(() {
-                                    quantity--;
-                                    txtStock.text = quantity.toString();
+                                    approval--;
+                                    txtApproval.text = approval.toString();
                                   });
                                 },
                                 icon: Icon(Icons.remove),
@@ -568,7 +570,7 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                             ),
                             onChanged: (value) {
                               setState(() {
-                                quantity = int.tryParse(value) ?? 0;
+                                approval = int.tryParse(value) ?? 0;
                               });
                             },
                           ),
@@ -599,23 +601,21 @@ class _ApproveItemPageState extends State<ApproveItemPage> {
                             ),
                             child: DropdownButtonHideUnderline(
                               child: DropdownButton<String>(
-                                value: selectedStock,
+                                value: selectedApproval,
                                 items: units.map((String value) {
                                   return DropdownMenuItem<String>(
                                     value: value,
-                                    child: Text(value,
-                                        style:
-                                            tFOnt(fontSize: 13)),
+                                    child:
+                                        Text(value, style: tFOnt(fontSize: 13)),
                                   );
                                 }).toList(),
                                 onChanged: (newValue) {
                                   setState(() {
-                                    selectedStock = newValue!;
+                                    selectedApproval = newValue!;
                                   });
                                 },
                                 isExpanded: true,
-                                style: tFOnt(
-                                    fontSize: 13, color: Colors.black),
+                                style: tFOnt(fontSize: 13, color: Colors.black),
                               ),
                             ),
                           ),

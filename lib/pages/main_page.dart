@@ -209,7 +209,7 @@ class _MainPageState extends State<MainPage> {
                   child: Text(
                     currentShip.name,
                     style: tFOnt(
-                      fontSize: 13,
+                      fontSize: (currentUser.role == 'abk') ? 16 : 13,
                       fontWeight: FontWeight.bold,
                     ),
                     textAlign: TextAlign.center,
