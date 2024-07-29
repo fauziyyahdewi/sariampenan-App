@@ -50,6 +50,14 @@ class _LoginPageState extends State<LoginPage> {
 
         // Tampilkan pesan kesalahan jika login gagal
         Flushbar(
+          icon: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: Icon(
+              Icons.check_circle_outline,
+              color: Colors.white,
+              size: 30,
+            ),
+          ),
           messageText: Text(
             'Login Berhasil',
             style: tFOnt(
@@ -75,6 +83,14 @@ class _LoginPageState extends State<LoginPage> {
 
         // Tampilkan pesan kesalahan jika login gagal
         Flushbar(
+          icon: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: Icon(
+              Icons.cancel_outlined,
+              color: Colors.white,
+              size: 30,
+            ),
+          ),
           messageText: Text(
             'Login gagal: Nomor telepon atau kata sandi salah',
             style: tFOnt(
@@ -86,7 +102,6 @@ class _LoginPageState extends State<LoginPage> {
           backgroundColor: Colors.red,
           flushbarPosition: FlushbarPosition.TOP,
         ).show(context).then((_) {
-          // Set flag back to false when Flushbar is dismissed
           setState(() {
             _isFlushbarShown = false;
           });
