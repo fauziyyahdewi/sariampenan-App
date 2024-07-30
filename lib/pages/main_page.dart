@@ -24,8 +24,8 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int currentIndex = 0;
-  late User currentUser; // Variabel untuk menyimpan data pengguna
-  late SessionManager sessionManager; // Variabel untuk SessionManager
+  User? currentUser; // Variabel untuk menyimpan data pengguna
+  SessionManager? sessionManager; // Variabel untuk SessionManager
 
   @override
   void initState() {
@@ -35,7 +35,7 @@ class _MainPageState extends State<MainPage> {
   }
 
   void _loadUserData() async {
-    User? user = await sessionManager.getUser();
+    User? user = await sessionManager?.getUser();
     if (user != null) {
       setState(() {
         currentUser = user;
@@ -101,7 +101,7 @@ class _MainPageState extends State<MainPage> {
                 ),
               ),
               Text(
-                'Hello ${currentUser.name}',
+                'Hello ${currentUser?.name}',
                 style: tFOnt(
                   fontSize: 13,
                   fontWeight: FontWeight.w700,
@@ -190,7 +190,7 @@ class _MainPageState extends State<MainPage> {
             padding: const EdgeInsets.symmetric(horizontal: 22.0, vertical: 8),
             child: Row(
               children: [
-                if (dummyDataShip.length > 1 && currentUser.role != 'abk') ...[
+                if (dummyDataShip.length > 1 && currentUser?.role != 'abk') ...[
                   GestureDetector(
                     onTap: _previousData,
                     child: Container(
@@ -209,13 +209,13 @@ class _MainPageState extends State<MainPage> {
                   child: Text(
                     currentShip.name,
                     style: tFOnt(
-                      fontSize: (currentUser.role == 'abk') ? 16 : 13,
+                      fontSize: (currentUser?.role == 'abk') ? 16 : 13,
                       fontWeight: FontWeight.bold,
                     ),
                     textAlign: TextAlign.center,
                   ),
                 ),
-                if (dummyDataShip.length > 1 && currentUser.role != 'abk') ...[
+                if (dummyDataShip.length > 1 && currentUser?.role != 'abk') ...[
                   GestureDetector(
                     onTap: _nextData,
                     child: Container(
@@ -239,9 +239,9 @@ class _MainPageState extends State<MainPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (currentUser.role == 'direksi')
+            if (currentUser?.role == 'direksi')
               TripMonitorBox(ship: currentShip),
-            if (currentUser.role == 'abk' || currentUser.role == 'teknisi')
+            if (currentUser?.role == 'abk' || currentUser?.role == 'teknisi')
               SettingRequest(),
             SizedBox(height: 10),
             createInfoButtons(),
@@ -273,9 +273,9 @@ class _MainPageState extends State<MainPage> {
         spacing: space,
         runSpacing: space,
         children: [
-          if (currentUser.role == 'direksi' ||
-              currentUser.role == 'abk' ||
-              currentUser.role == 'logistic')
+          if (currentUser?.role == 'direksi' ||
+              currentUser?.role == 'abk' ||
+              currentUser?.role == 'logistic')
             createShortCutInfo(
               size,
               Icons.build,
@@ -284,9 +284,9 @@ class _MainPageState extends State<MainPage> {
               Color.fromARGB(255, 239, 90, 111),
               onClick: () {},
             ),
-          if (currentUser.role == 'direksi' ||
-              currentUser.role == 'abk' ||
-              currentUser.role == 'logistic')
+          if (currentUser?.role == 'direksi' ||
+              currentUser?.role == 'abk' ||
+              currentUser?.role == 'logistic')
             createShortCutInfo(
               size,
               Icons.shopping_cart_checkout,
@@ -295,7 +295,7 @@ class _MainPageState extends State<MainPage> {
               Color.fromARGB(255, 63, 162, 246),
               onClick: () {},
             ),
-          if (currentUser.role == 'direksi')
+          if (currentUser?.role == 'direksi')
             createShortCutInfo(
               size,
               Icons.mail,
@@ -319,7 +319,7 @@ class _MainPageState extends State<MainPage> {
         spacing: space,
         runSpacing: space,
         children: [
-          if (currentUser.role == 'direksi')
+          if (currentUser?.role == 'direksi')
             createShortCutOtherMenu(
               size,
               Icons.shopping_cart_checkout,
@@ -333,28 +333,28 @@ class _MainPageState extends State<MainPage> {
                 );
               },
             ),
-          if (currentUser.role == 'direksi')
+          if (currentUser?.role == 'direksi')
             createShortCutOtherMenu(
               size,
               Icons.query_builder_outlined,
               'Aproval Perbaikan',
               onClick: () {},
             ),
-          if (currentUser.role == 'direksi')
+          if (currentUser?.role == 'direksi')
             createShortCutOtherMenu(
               size,
               Icons.people,
               'Crew Kapal',
               onClick: () {},
             ),
-          if (currentUser.role == 'abk')
+          if (currentUser?.role == 'abk')
             createShortCutOtherMenu(
               size,
               Icons.directions_boat,
               'Input LKK',
               onClick: () {},
             ),
-          if (currentUser.role == 'abk')
+          if (currentUser?.role == 'abk')
             createShortCutOtherMenu(
               size,
               Icons.security_update,
@@ -370,21 +370,21 @@ class _MainPageState extends State<MainPage> {
                 );
               },
             ),
-          if (currentUser.role == 'abk' || currentUser.role == 'teknisi')
+          if (currentUser?.role == 'abk' || currentUser?.role == 'teknisi')
             createShortCutOtherMenu(
               size,
               Icons.document_scanner,
               'Input Hasil Perbaikan',
               onClick: () {},
             ),
-          if (currentUser.role == 'logistic')
+          if (currentUser?.role == 'logistic')
             createShortCutOtherMenu(
               size,
               Icons.build,
               'Perbaikan',
               onClick: () {},
             ),
-          if (currentUser.role == 'logistic')
+          if (currentUser?.role == 'logistic')
             createShortCutOtherMenu(
               size,
               Icons.request_page,
